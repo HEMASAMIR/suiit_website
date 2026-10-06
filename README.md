@@ -32,11 +32,15 @@
 
 ## 📸 لقطات
 
-| الإيجار | البوكس فيت |
+| 🌙 الوضع الليلي | 🛍️ المتجر |
 |---|---|
+| <img src="docs/screenshots/hero-dark.png" width="440" /> | <img src="docs/screenshots/shop.png" width="440" /> |
+| **🤵 الإيجار — ميعاد المناسبة والتأمين** | **✨ البوكس فيت — شراء أو إيجار** |
 | <img src="docs/screenshots/rent.png" width="440" /> | <img src="docs/screenshots/boxfit.png" width="440" /> |
-| **المتجر** | |
-| <img src="docs/screenshots/shop.png" width="440" /> | |
+| **🧾 الدفع — الإيجار والتأمين المسترد** | **🧑‍💼 لوحة التحكم — سعر الإيجار والتأمين والقَصّة** |
+| <img src="docs/screenshots/checkout.png" width="440" /> | <img src="docs/screenshots/admin-product.png" width="440" /> |
+
+<p align="center"><b>📱 موبايل</b><br/><img src="docs/screenshots/mobile.png" width="260" /></p>
 
 ## ⚙️ إزاي الإيجار شغال
 
