@@ -1,0 +1,34 @@
+import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
+import { mutateDB, readDB, uid } from "@/lib/db";
+import { publicCustomer } from "@/lib/customers";
+import { COLLECTIONS, isAdmin, isCollection, unauthorized } from "@/lib/admin-guard";
+
+export async function GET(_req: Request, ctx: RouteContext<"/api/admin/[collection]">) {
+  if (!(await isAdmin())) return unauthorized();
+  const { collection } = await ctx.params;
+  if (!isCollection(collection)) return NextResponse.json({ error: "not found" }, { status: 404 });
+  const db = await readDB();
+  if (collection === "customers") return NextResponse.json(db.customers.map(publicCustomer));
+  return NextResponse.json(db[collection]);
+}
+
+export async function POST(req: Request, ctx: RouteContext<"/api/admin/[collection]">) {
+  if (!(await isAdmin())) return unauthorized();
+  const { collection } = await ctx.params;
+  if (!isCollection(collection) || collection === "orders" || collection === "customers")
+    return NextResponse.json({ error: "not allowed" }, { status: 400 });
+  const data = await req.json();
+  const item = await mutateDB((db) => {
+    const doc = { ...data, id: uid(COLLECTIONS[collection]) };
+    if (collection === "products") {
+      doc.createdAt = new Date().toISOString();
+      doc.slug = doc.slug || `vestro-${String(doc.model || "item").toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${Date.now().toString(36)}`;
+    }
+    if (collection === "categories" && !doc.slug) doc.slug = `cat-${Date.now().toString(36)}`;
+    (db[collection] as { id: string }[]).unshift(doc);
+    return doc;
+  });
+  revalidatePath("/", "layout");
+  return NextResponse.json(item);
+}

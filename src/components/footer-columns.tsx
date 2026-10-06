@@ -1,0 +1,193 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { motion, useScroll } from "framer-motion";
+import {
+  ArrowLeft, ArrowUp, Clock, FolderHeart, LifeBuoy, LogIn, Mail, MapPin, MessageCircle, Package, Phone, RefreshCcw, ShoppingBag, Truck,
+} from "lucide-react";
+import type { Category, Settings } from "@/lib/types";
+import { activeSocials } from "@/lib/social";
+
+const col = {
+  hidden: { opacity: 0, y: 40 },
+  show: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.12, duration: 0.7, ease: [0.22, 1, 0.36, 1] as const } }),
+};
+
+function ColTitle({ icon: Icon, children }: { icon: typeof Package; children: React.ReactNode }) {
+  return (
+    <h4 className="mb-5 flex items-center gap-2.5 text-base font-extrabold">
+      <span className="grid size-8 place-items-center rounded-lg bg-gradient-to-br from-[#14b8a6] to-[#0e2c4e] shadow-lg shadow-black/20">
+        <Icon className="size-4 text-[#fbbf24]" />
+      </span>
+      {children}
+      <span className="h-px flex-1 bg-gradient-to-l from-white/0 via-white/10 to-white/20" />
+    </h4>
+  );
+}
+
+function NavLink({ href, icon: Icon, children }: { href: string; icon: typeof Package; children: React.ReactNode }) {
+  return (
+    <Link href={href} className="group flex items-center gap-3 rounded-xl px-2 py-2 text-sm text-white/70 transition hover:bg-white/[.05] hover:text-white">
+      <Icon className="size-4 text-[#5eead4]/70 transition group-hover:text-[#5eead4]" />
+      <span className="flex-1">{children}</span>
+      <ArrowLeft className="size-3.5 translate-x-2 text-[#fbbf24] opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+    </Link>
+  );
+}
+
+/** "Open now" based on Cairo time; computed after mount to avoid hydration mismatch. */
+function useOpenNow() {
+  const [open, setOpen] = useState<boolean | null>(null);
+  useEffect(() => {
+    const check = () => {
+      const h = Number(new Intl.DateTimeFormat("en-GB", { hour: "numeric", hour12: false, timeZone: "Africa/Cairo" }).format(new Date()));
+      setOpen(h >= 10 && h < 24);
+    };
+    check();
+    const t = setInterval(check, 60_000);
+    return () => clearInterval(t);
+  }, []);
+  return open;
+}
+
+export function FooterColumns({ settings, categories }: { settings: Settings; categories: Category[] }) {
+  const open = useOpenNow();
+  const socials = activeSocials(settings);
+
+  return (
+    <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} className="container-z relative grid gap-6 py-14 md:grid-cols-2 lg:grid-cols-[1.25fr_1fr_.9fr_1.15fr]">
+      {/* Brand */}
+      <motion.div custom={0} variants={col} className="relative">
+        <p className="text-gold-shimmer inline-block font-serif text-5xl tracking-[.2em]">{settings.storeName}</p>
+        <p className="mt-1 font-serif text-xs italic tracking-[.35em] text-[#5eead4]/80">EST. 2026 • CAIRO</p>
+        <p className="mt-5 max-w-sm text-sm leading-7 text-white/60">{settings.aboutText}</p>
+
+        <div className="mt-6 inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[.04] px-4 py-3">
+          <span className="text-2xl">🤵</span>
+          <span>
+            <span className="block text-sm font-bold text-white/90">شراء • إيجار • بوكس فيت</span>
+            <span className="text-[11px] text-white/50">بدل مكوية وجاهزة — شحن لكل المحافظات</span>
+          </span>
+        </div>
+
+        {socials.length > 0 && (
+          <div className="mt-6 flex flex-wrap gap-2.5">
+            {socials.map((so, i) => (
+              <motion.a
+                key={so.key}
+                href={settings[so.key]}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={so.label}
+                initial={{ scale: 0, rotate: -90 }}
+                whileInView={{ scale: 1, rotate: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 + i * 0.1, type: "spring", stiffness: 260 }}
+                className={`group relative grid size-11 place-items-center rounded-2xl border border-white/15 bg-white/[.04] transition duration-300 hover:-translate-y-1.5 hover:border-transparent hover:shadow-xl ${so.hover}`}
+              >
+                <svg viewBox="0 0 24 24" className="size-[18px] fill-current transition group-hover:scale-110"><path d={so.path} /></svg>
+                <span className="pointer-events-none absolute -top-9 rounded-lg bg-white px-2 py-1 text-[10px] font-bold text-[#0e2c4e] opacity-0 transition group-hover:-top-10 group-hover:opacity-100">{so.label}</span>
+              </motion.a>
+            ))}
+          </div>
+        )}
+      </motion.div>
+
+      {/* Categories with thumbnails */}
+      <motion.div custom={1} variants={col} className="rounded-[1.75rem] border border-white/[.07] bg-white/[.025] p-5 backdrop-blur-sm">
+        <ColTitle icon={FolderHeart}>الأقسام</ColTitle>
+        <ul className="space-y-1">
+          {categories.map((c) => (
+            <li key={c.id}>
+              <Link href={`/shop?category=${c.slug}`} className="group flex items-center gap-3 rounded-xl p-1.5 transition hover:bg-white/[.06]">
+                <span className="relative size-10 shrink-0 overflow-hidden rounded-xl ring-1 ring-white/10 transition group-hover:ring-[#5eead4]/60">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={c.image} alt="" className="size-full object-cover transition duration-500 group-hover:scale-125" />
+                </span>
+                <span className="flex-1 text-sm text-white/75 transition group-hover:text-white">{c.name}</span>
+                <ArrowLeft className="size-3.5 translate-x-2 text-[#fbbf24] opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </motion.div>
+
+      {/* Help */}
+      <motion.div custom={2} variants={col} className="rounded-[1.75rem] border border-white/[.07] bg-white/[.025] p-5 backdrop-blur-sm">
+        <ColTitle icon={LifeBuoy}>مساعدة</ColTitle>
+        <div className="space-y-0.5">
+          <NavLink href="/track" icon={Truck}>تتبع طلبك</NavLink>
+          <NavLink href="/shop" icon={ShoppingBag}>كل المنتجات</NavLink>
+          <NavLink href="/account" icon={Package}>حسابي وطلباتي</NavLink>
+          <NavLink href="/login" icon={LogIn}>دخول / حساب جديد</NavLink>
+          <NavLink href="/checkout" icon={ArrowLeft}>إتمام الطلب</NavLink>
+        </div>
+        <div className="mt-4 flex items-start gap-2 rounded-xl bg-[#fbbf24]/10 p-3 text-xs text-[#fde68a]">
+          <RefreshCcw className="mt-0.5 size-3.5 shrink-0" /> استبدال واسترجاع سهل خلال {settings.returnDays} يوم من الاستلام
+        </div>
+      </motion.div>
+
+      {/* Contact */}
+      <motion.div custom={3} variants={col} className="rounded-[1.75rem] border border-white/[.07] bg-white/[.025] p-5 backdrop-blur-sm">
+        <ColTitle icon={MessageCircle}>تواصل معانا</ColTitle>
+        <div className="mb-4 flex items-center gap-2 rounded-xl bg-white/[.04] px-3 py-2.5 text-xs">
+          <span className="relative flex size-2.5">
+            {open && <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />}
+            <span className={`relative inline-flex size-2.5 rounded-full ${open === null ? "bg-white/30" : open ? "bg-emerald-400" : "bg-amber-400"}`} />
+          </span>
+          <b className={open ? "text-emerald-300" : "text-amber-300"}>{open === null ? "…" : open ? "متاحين دلوقتي" : "هنرد عليك الصبح"}</b>
+          <span className="mr-auto flex items-center gap-1 text-white/50"><Clock className="size-3.5" /> 10 ص – 12 م</span>
+        </div>
+        <div className="space-y-2">
+          {[
+            { href: `tel:${settings.phone}`, icon: Phone, label: "اتصل بينا", value: settings.phone, ltr: true },
+            { href: `mailto:${settings.email}`, icon: Mail, label: "البريد الإلكتروني", value: settings.email, ltr: true },
+            { href: "/track", icon: MapPin, label: "التوصيل", value: "لكل محافظات مصر" },
+          ].map((x) => (
+            <a key={x.label} href={x.href} className="group flex items-center gap-3 rounded-xl p-1.5 transition hover:bg-white/[.06]">
+              <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-white/[.06] ring-1 ring-white/10 transition group-hover:bg-[#14b8a6] group-hover:ring-transparent">
+                <x.icon className="size-4 text-[#5eead4] transition group-hover:text-white" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-[11px] text-white/45">{x.label}</span>
+                <span dir={x.ltr ? "ltr" : undefined} className="block truncate text-sm font-bold text-white/85">{x.value}</span>
+              </span>
+            </a>
+          ))}
+        </div>
+        {settings.whatsapp && (
+          <a href={`https://wa.me/${settings.whatsapp}`} target="_blank" rel="noreferrer" className="btn mt-4 w-full bg-[#25D366] py-3 text-white shadow-lg shadow-[#25D366]/25 hover:-translate-y-0.5 hover:shadow-xl">
+            <MessageCircle className="size-4" /> كلمنا على واتساب
+          </a>
+        )}
+      </motion.div>
+    </motion.div>
+  );
+}
+
+/** Floating back-to-top button with a scroll-progress ring. */
+export function BackToTop() {
+  const { scrollYProgress } = useScroll();
+  const [show, setShow] = useState(false);
+  useEffect(() => scrollYProgress.on("change", (v) => setShow(v > 0.15)), [scrollYProgress]);
+  return (
+    <motion.button
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      aria-label="لفوق"
+      initial={false}
+      animate={{ opacity: show ? 1 : 0, scale: show ? 1 : 0.6, y: show ? 0 : 20 }}
+      style={{ pointerEvents: show ? "auto" : "none" }}
+      className="group fixed bottom-24 right-5 z-40 grid size-14 place-items-center rounded-full bg-surface shadow-xl shadow-black/10 ring-1 ring-line"
+    >
+      <svg viewBox="0 0 48 48" className="absolute inset-0 -rotate-90">
+        <circle cx="24" cy="24" r="21" className="fill-none stroke-line" strokeWidth="3" />
+        <motion.circle cx="24" cy="24" r="21" className="fill-none" stroke="url(#btt)" strokeWidth="3" strokeLinecap="round" style={{ pathLength: scrollYProgress }} />
+        <defs>
+          <linearGradient id="btt" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#14b8a6" /><stop offset="100%" stopColor="#fbbf24" /></linearGradient>
+        </defs>
+      </svg>
+      <ArrowUp className="size-5 text-primary transition group-hover:-translate-y-0.5" />
+    </motion.button>
+  );
+}
