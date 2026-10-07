@@ -24,8 +24,8 @@ export function ProductCard({ p }: { p: PublicProduct }) {
 
   return (
     <motion.div whileHover={{ y: -6 }} transition={{ type: "spring", stiffness: 300, damping: 22 }} className="group relative">
-      <Tilt className="relative rounded-[1.75rem]">
-      <Link href={`/product/${p.slug}`} className="relative block aspect-[4/5] overflow-hidden rounded-[1.75rem] bg-surface-2">
+      <Tilt className="relative rounded-lg">
+      <Link href={`/product/${p.slug}`} className="relative block aspect-[4/5] overflow-hidden rounded-lg bg-surface-2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={p.images[0]} alt={p.name} loading="lazy" className="absolute inset-0 size-full object-cover transition duration-700 group-hover:scale-110" />
         {p.images[1] && (
@@ -38,7 +38,7 @@ export function ProductCard({ p }: { p: PublicProduct }) {
           {p.isNew && <span className="chip bg-ink text-bg">جديد</span>}
           {off > 0 && <span className="chip bg-primary text-white">-{off}%</span>}
           {out && <span className="chip bg-zinc-500 text-white">نفدت الكمية</span>}
-          {rentable && <span className="chip bg-[#fbbf24] text-black">🤵 متاحة للإيجار</span>}
+          {rentable && <span className="chip bg-[#d4b483] text-black">🤵 متاحة للإيجار</span>}
           {p.fit === "بوكس فيت" && <span className="chip bg-white/90 text-black backdrop-blur">BOX FIT</span>}
         </div>
         <span className="absolute top-3 left-3 rounded-full bg-white/85 px-2.5 py-1 font-serif text-[11px] font-semibold text-black backdrop-blur">

@@ -15,7 +15,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
           mobileOffset={{ bottom: 90 }}
           dir="rtl"
           toastOptions={{
-            className: "!rounded-2xl !border-line !bg-surface !text-ink !font-sans !shadow-xl",
+            className: "!rounded-lg !border-line !bg-surface !text-ink !font-sans !shadow-xl",
           }}
         />
       </CartProvider>

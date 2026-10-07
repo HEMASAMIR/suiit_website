@@ -28,7 +28,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="grain relative grid min-h-dvh place-items-center overflow-hidden bg-gradient-to-b from-[#effcfa] via-white to-[#fffaf0] dark:from-[#0a2636] dark:via-[#07182b] dark:to-[#0b1f33] p-4">
+    <div className="grain relative grid min-h-dvh place-items-center overflow-hidden bg-gradient-to-b from-[#f6efe3] via-white to-[#fbf7f0] dark:from-[#1a1612] dark:via-[#0d0c0b] dark:to-[#110f0d] p-4">
       <div className="absolute left-4 top-4"><ThemeToggle /></div>
       <p className="pointer-events-none absolute select-none font-serif text-[28vw] leading-none text-primary/[.07] dark:text-white/[.03]">VESTRO</p>
       <motion.form
@@ -38,7 +38,7 @@ export default function LoginPage() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="card relative w-full max-w-sm p-8 shadow-2xl shadow-primary/15"
       >
-        <span className="mx-auto grid size-16 place-items-center rounded-2xl bg-primary text-white shadow-lg shadow-primary/40"><Lock className="size-7" /></span>
+        <span className="mx-auto grid size-16 place-items-center rounded-lg bg-primary text-white shadow-lg shadow-primary/40"><Lock className="size-7" /></span>
         <h1 className="mt-5 text-center font-serif text-3xl tracking-[.2em]">VESTRO</h1>
         <p className="mt-1 text-center text-sm text-muted">تسجيل دخول لوحة التحكم</p>
         <label className="label mt-8">البريد الإلكتروني</label>

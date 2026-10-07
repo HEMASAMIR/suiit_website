@@ -19,7 +19,7 @@ export default function CategoriesPage() {
         title: c.name,
         subtitle: `/${c.slug}`,
         body: c.description || "بدون وصف",
-        badge: <span className="rounded-full bg-white/90 px-2.5 py-1 font-serif text-xs font-bold text-[#0e2c4e] shadow">#{c.order}</span>,
+        badge: <span className="rounded-full bg-white/90 px-2.5 py-1 font-serif text-xs font-bold text-[#16130f] shadow">#{c.order}</span>,
       })}
       fields={[
         { key: "name", label: "اسم القسم", required: true },
@@ -36,9 +36,9 @@ export default function CategoriesPage() {
             <div className="flex items-center gap-4">
               {c.image ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={c.image} alt="" className="size-16 rounded-2xl object-cover shadow-md ring-2 ring-surface transition duration-500 group-hover:scale-105 group-hover:rotate-2" />
+                <img src={c.image} alt="" className="size-16 rounded-lg object-cover shadow-md ring-2 ring-surface transition duration-500 group-hover:scale-105 group-hover:rotate-2" />
               ) : (
-                <span className="size-16 rounded-2xl bg-surface-2" />
+                <span className="size-16 rounded-lg bg-surface-2" />
               )}
               <div className="space-y-1.5">
                 <p className="text-base font-extrabold">{c.name}</p>
@@ -48,7 +48,7 @@ export default function CategoriesPage() {
           ),
         },
         { label: "الوصف", render: (c) => <span className="line-clamp-2 max-w-xs leading-6 text-muted">{c.description}</span> },
-        { label: "الترتيب", render: (c) => <span className="grid size-9 place-items-center rounded-xl bg-gradient-to-br from-primary to-[#0e2c4e] font-serif text-sm font-bold text-white shadow-md">{c.order}</span> },
+        { label: "الترتيب", render: (c) => <span className="grid size-9 place-items-center rounded-xl bg-gradient-to-br from-primary to-[#16130f] font-serif text-sm font-bold text-white shadow-md">{c.order}</span> },
         { label: "الحالة", render: (c) => <ActiveChip on={c.active} yes="ظاهر" no="مخفي" /> },
       ]}
     />

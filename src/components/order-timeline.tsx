@@ -10,7 +10,7 @@ const ICONS = { pending: ClipboardCheck, confirmed: Package, shipped: Truck, del
 export function OrderTimeline({ status, history }: { status: OrderStatus; history: Order["history"] }) {
   if (status === "cancelled" || status === "returned")
     return (
-      <div className="flex items-center gap-3 rounded-2xl bg-rose-50 p-4 text-rose-700 dark:bg-rose-500/10 dark:text-rose-300">
+      <div className="flex items-center gap-3 rounded-lg bg-rose-50 p-4 text-rose-700 dark:bg-rose-500/10 dark:text-rose-300">
         <XCircle className="size-6" /> <b>الطلب {STATUS[status].label}</b>
       </div>
     );

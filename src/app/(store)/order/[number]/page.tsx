@@ -57,7 +57,7 @@ export default async function OrderPage({ params, searchParams }: PageProps<"/or
           <div className="flex justify-between"><dt className="text-muted">طريقة الدفع</dt><dd className="font-bold">{PAYMENT[o.paymentMethod]}</dd></div>
         </dl>
         {o.paymentMethod !== "cod" && (
-          <p className="mt-4 rounded-2xl bg-primary-soft p-4 text-sm">
+          <p className="mt-4 rounded-lg bg-primary-soft p-4 text-sm">
             حوّل <b>{egp(o.total)}</b> على <b dir="ltr">{o.paymentMethod === "instapay" ? s.instapay : s.vodafoneCash}</b> وابعت صورة التحويل على واتساب مع رقم الطلب.
           </p>
         )}

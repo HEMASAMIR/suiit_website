@@ -88,12 +88,12 @@ export function CheckoutForm({ zones, settings, me }: { zones: ShippingZone[]; s
     <form onSubmit={submit} className="grid gap-8 lg:grid-cols-[1fr_400px]">
       <div className="space-y-6">
         {me ? (
-          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-3 rounded-2xl border border-primary/30 bg-primary-soft p-4 text-sm">
-            <span className="grid size-10 place-items-center rounded-full bg-gradient-to-br from-primary to-[#0e2c4e] font-bold text-white">{me.name[0]}</span>
+          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-3 rounded-lg border border-primary/30 bg-primary-soft p-4 text-sm">
+            <span className="grid size-10 place-items-center rounded-full bg-gradient-to-br from-primary to-[#16130f] font-bold text-white">{me.name[0]}</span>
             <span className="flex-1">مسجّل باسم <b>{me.name}</b> — بياناتك اتكتبت تلقائي والطلب هيظهر في <Link href="/account" className="font-bold text-primary underline">حسابك</Link></span>
           </motion.div>
         ) : (
-          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="flex flex-wrap items-center gap-3 rounded-2xl border border-dashed border-primary/40 bg-surface p-4 text-sm">
+          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="flex flex-wrap items-center gap-3 rounded-lg border border-dashed border-primary/40 bg-surface p-4 text-sm">
             <LogIn className="size-5 text-primary" />
             <span className="flex-1">عندك حساب؟ سجّل دخولك عشان بياناتك تتكتب تلقائي وتتابع طلبك من حسابك</span>
             <Link href="/login?next=/checkout" className="btn-primary px-5 py-2 text-xs">دخول</Link>
@@ -118,12 +118,12 @@ export function CheckoutForm({ zones, settings, me }: { zones: ShippingZone[]; s
           </div>
           <AnimatePresence>
             {zone && (
-              <motion.p key="ship" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-4 flex items-center gap-2 rounded-2xl bg-primary-soft px-4 py-3 text-sm">
+              <motion.p key="ship" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-4 flex items-center gap-2 rounded-lg bg-primary-soft px-4 py-3 text-sm">
                 <Truck className="size-4 text-primary" /> التوصيل لـ {zone.governorate} خلال <b>{zone.days}</b> — مصاريف الشحن <b className="text-primary">{free ? "مجاني 🎁" : egp(zone.fee)}</b>
               </motion.p>
             )}
             {zone && (
-              <motion.p key="return" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-2 rounded-2xl border border-dashed border-primary/40 px-4 py-3 text-xs leading-6 text-muted">
+              <motion.p key="return" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-2 rounded-lg border border-dashed border-primary/40 px-4 py-3 text-xs leading-6 text-muted">
                 🔄 افحص الطلب قبل ما تدفع — لو معجبكش رجّعه مع المندوب وادفع{" "}
                 <b className="text-primary">{egp((settings.returnShippingFee ?? 0) > 0 ? settings.returnShippingFee! : zone.fee)}</b> مصاريف شحن بس.
               </motion.p>
@@ -135,7 +135,7 @@ export function CheckoutForm({ zones, settings, me }: { zones: ShippingZone[]; s
           <h2 className="mb-6 flex items-center gap-2 text-xl font-extrabold"><span className="grid size-8 place-items-center rounded-full bg-primary text-sm text-white">2</span> طريقة الدفع</h2>
           <div className="grid gap-3">
             {pays.map((p) => (
-              <label key={p.id} className={`flex cursor-pointer items-center gap-4 rounded-2xl border-2 p-4 transition ${pay === p.id ? "border-primary bg-primary-soft/50" : "border-line hover:border-primary/40"}`}>
+              <label key={p.id} className={`flex cursor-pointer items-center gap-4 rounded-lg border-2 p-4 transition ${pay === p.id ? "border-primary bg-primary-soft/50" : "border-line hover:border-primary/40"}`}>
                 <input type="radio" name="pay" checked={pay === p.id} onChange={() => setPay(p.id)} className="sr-only" />
                 <span className={`grid size-11 place-items-center rounded-xl ${pay === p.id ? "bg-primary text-white" : "bg-surface-2 text-muted"}`}><p.icon className="size-5" /></span>
                 <span className="flex-1">
@@ -146,7 +146,7 @@ export function CheckoutForm({ zones, settings, me }: { zones: ShippingZone[]; s
               </label>
             ))}
           </div>
-          {pay !== "cod" && <p className="mt-4 rounded-2xl bg-amber-50 p-3 text-xs text-amber-800 dark:bg-amber-500/10 dark:text-amber-300">بعد تأكيد الطلب ابعت صورة التحويل على واتساب مع رقم الأوردر.</p>}
+          {pay !== "cod" && <p className="mt-4 rounded-lg bg-amber-50 p-3 text-xs text-amber-800 dark:bg-amber-500/10 dark:text-amber-300">بعد تأكيد الطلب ابعت صورة التحويل على واتساب مع رقم الأوردر.</p>}
         </motion.section>
       </div>
 
@@ -171,7 +171,7 @@ export function CheckoutForm({ zones, settings, me }: { zones: ShippingZone[]; s
           </div>
 
           <div className="mt-5 flex gap-2 border-t border-line pt-5">
-            <div className="flex flex-1 items-center gap-2 rounded-2xl border border-line px-3">
+            <div className="flex flex-1 items-center gap-2 rounded-lg border border-line px-3">
               <BadgePercent className="size-4 text-primary" />
               <input value={code} onChange={(e) => setCode(e.target.value)} disabled={!!coupon} placeholder="كود الخصم" className="w-full bg-transparent py-2.5 text-sm uppercase outline-none" />
             </div>

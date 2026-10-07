@@ -74,7 +74,7 @@ export function Header({ announcement, categories, storeName, user }: { announce
             <ThemeToggle />
             {user ? (
               <Link href="/account" className="group flex items-center gap-2 rounded-full border border-line bg-surface p-1 pl-1 transition hover:border-primary sm:pl-4" title="حسابي">
-                <span className="grid size-8 place-items-center rounded-full bg-gradient-to-br from-primary to-[#0e2c4e] text-sm font-bold text-white">{user.name[0]}</span>
+                <span className="grid size-8 place-items-center rounded-full bg-gradient-to-br from-primary to-[#16130f] text-sm font-bold text-white">{user.name[0]}</span>
                 <span className="hidden text-sm font-bold group-hover:text-primary sm:inline">{user.name.split(" ")[0]}</span>
               </Link>
             ) : (
@@ -127,7 +127,7 @@ export function Header({ announcement, categories, storeName, user }: { announce
               <nav className="flex flex-col gap-1">
                 {[...nav, ...categories.slice(3).map((c) => ({ href: `/shop?category=${c.slug}`, label: c.name }))].map((n, i) => (
                   <motion.div key={n.href} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.05 * i }}>
-                    <Link href={n.href} onClick={() => setMenu(false)} className="block rounded-2xl px-4 py-3 text-lg font-bold hover:bg-primary-soft hover:text-primary">
+                    <Link href={n.href} onClick={() => setMenu(false)} className="block rounded-lg px-4 py-3 text-lg font-bold hover:bg-primary-soft hover:text-primary">
                       {n.label}
                     </Link>
                   </motion.div>
@@ -136,7 +136,7 @@ export function Header({ announcement, categories, storeName, user }: { announce
               <Link href={user ? "/account" : "/login"} onClick={() => setMenu(false)} className="btn-primary mt-6 w-full py-3.5">
                 {user ? <><User className="size-4" /> حسابي</> : <><LogIn className="size-4" /> دخول / حساب جديد</>}
               </Link>
-              <div className="mt-auto flex items-center justify-between rounded-2xl bg-surface-2 p-4">
+              <div className="mt-auto flex items-center justify-between rounded-lg bg-surface-2 p-4">
                 <span className="text-sm font-bold">الوضع الليلي / النهاري</span>
                 <ThemeToggle />
               </div>

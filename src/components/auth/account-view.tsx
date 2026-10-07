@@ -63,10 +63,10 @@ export function AccountView({ me: initial, orders, governorates }: { me: PublicC
     <div className="soft-wash relative overflow-hidden">
       <div className="grid-lines pointer-events-none absolute inset-0" />
       <div className="container-z relative py-12">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="bridal-card relative overflow-hidden rounded-[2.5rem] p-7 text-white sm:p-10">
-          <div className="bridal-orb pointer-events-none absolute -left-20 -top-20 size-72 rounded-full bg-[#14b8a6]/40 blur-[90px]" />
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="bridal-card relative overflow-hidden rounded-lg p-7 text-white sm:p-10">
+          <div className="bridal-orb pointer-events-none absolute -left-20 -top-20 size-72 rounded-full bg-[#c9a96e]/40 blur-[90px]" />
           <div className="relative flex flex-wrap items-center gap-5">
-            <span className="grid size-20 place-items-center rounded-[1.75rem] bg-gradient-to-br from-[#fcd34d] to-[#f59e0b] text-3xl font-extrabold text-[#0e2c4e] shadow-2xl shadow-[#f59e0b]/30 ring-4 ring-white/20">
+            <span className="grid size-20 place-items-center rounded-lg bg-gradient-to-br from-[#e2c48f] to-[#b8935a] text-3xl font-extrabold text-[#16130f] shadow-2xl shadow-[#b8935a]/30 ring-4 ring-white/20">
               {me.name[0]}
             </span>
             <div className="flex-1">
@@ -86,8 +86,8 @@ export function AccountView({ me: initial, orders, governorates }: { me: PublicC
             ].map(([I, l, v]) => {
               const Icon = I as typeof Package;
               return (
-                <div key={l as string} className="rounded-2xl bg-white/[.07] p-4 ring-1 ring-white/10">
-                  <Icon className="size-5 text-[#fbbf24]" />
+                <div key={l as string} className="rounded-lg bg-white/[.07] p-4 ring-1 ring-white/10">
+                  <Icon className="size-5 text-[#d4b483]" />
                   <p className="mt-2 text-xl font-extrabold sm:text-2xl">{v as string}</p>
                   <p className="text-xs text-white/60">{l as string}</p>
                 </div>
@@ -99,8 +99,8 @@ export function AccountView({ me: initial, orders, governorates }: { me: PublicC
         <div className="mt-8 grid gap-6 lg:grid-cols-[240px_1fr]">
           <nav className="card flex gap-1 overflow-x-auto p-2 lg:flex-col lg:self-start">
             {TABS.map((t) => (
-              <button key={t.id} onClick={() => setTab(t.id)} className={`relative flex shrink-0 items-center gap-3 rounded-2xl px-4 py-3 text-sm font-bold transition ${tab === t.id ? "text-white" : "text-muted hover:text-primary"}`}>
-                {tab === t.id && <motion.span layoutId="acct-tab" className="absolute inset-0 rounded-2xl bg-primary shadow-lg shadow-primary/30" />}
+              <button key={t.id} onClick={() => setTab(t.id)} className={`relative flex shrink-0 items-center gap-3 rounded-lg px-4 py-3 text-sm font-bold transition ${tab === t.id ? "text-white" : "text-muted hover:text-primary"}`}>
+                {tab === t.id && <motion.span layoutId="acct-tab" className="absolute inset-0 rounded-lg bg-primary shadow-lg shadow-primary/30" />}
                 <t.icon className="relative size-[18px]" />
                 <span className="relative">{t.l}</span>
               </button>
@@ -112,7 +112,7 @@ export function AccountView({ me: initial, orders, governorates }: { me: PublicC
               {tab === "orders" &&
                 (orders.length === 0 ? (
                   <div className="card py-16 text-center">
-                    <span className="mx-auto grid size-20 animate-float place-items-center rounded-[1.75rem] bg-gradient-to-br from-primary to-[#0e2c4e] text-white"><ShoppingBag className="size-9" /></span>
+                    <span className="mx-auto grid size-20 animate-float place-items-center rounded-lg bg-gradient-to-br from-primary to-[#16130f] text-white"><ShoppingBag className="size-9" /></span>
                     <p className="mt-5 text-lg font-extrabold">لسه معملتيش طلبات</p>
                     <p className="mt-1 text-sm text-muted">أول طلب ليك هيظهر هنا وتقدر تتابعه</p>
                     <Link href="/shop" className="btn-primary mt-6">تسوق الآن</Link>
@@ -143,7 +143,7 @@ export function AccountView({ me: initial, orders, governorates }: { me: PublicC
                                 <OrderTimeline status={o.status} history={o.history} />
                                 <div className="space-y-2">
                                   {o.items.map((it, i) => (
-                                    <div key={i} className="flex items-center gap-3 rounded-2xl bg-surface-2 p-2.5">
+                                    <div key={i} className="flex items-center gap-3 rounded-lg bg-surface-2 p-2.5">
                                       {/* eslint-disable-next-line @next/next/no-img-element */}
                                       <img src={it.image} alt="" className="h-14 w-12 rounded-xl object-cover" />
                                       <div className="flex-1">

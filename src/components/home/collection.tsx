@@ -95,7 +95,7 @@ export function CollectionRing({ products }: { products: PublicProduct[] }) {
       >
         {/* floor glow + reflection */}
         <div className="pointer-events-none absolute bottom-2 left-1/2 h-24 w-[min(90%,900px)] -translate-x-1/2 rounded-[50%] bg-[radial-gradient(ellipse_at_center,rgba(20,184,166,.45),transparent_70%)] blur-xl" />
-        <div className="pointer-events-none absolute bottom-10 left-1/2 h-px w-[min(80%,800px)] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#fbbf24]/70 to-transparent" />
+        <div className="pointer-events-none absolute bottom-10 left-1/2 h-px w-[min(80%,800px)] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#d4b483]/70 to-transparent" />
 
         <div style={{ transform: "rotateX(-7deg)", transformStyle: "preserve-3d" }} className="relative">
           <motion.div
@@ -115,7 +115,7 @@ export function CollectionRing({ products }: { products: PublicProduct[] }) {
                     draggable={false}
                     onClick={(e) => drag.current.moved > 8 && e.preventDefault()}
                     className={`group relative block size-full overflow-hidden rounded-[1.6rem] border-[3px] bg-surface-2 shadow-[0_30px_60px_-25px_rgba(0,0,0,.7)] transition duration-700 ${
-                      isFront ? "border-[#fbbf24] brightness-100" : "border-white/70 brightness-[.62] saturate-[.8]"
+                      isFront ? "border-[#d4b483] brightness-100" : "border-white/70 brightness-[.62] saturate-[.8]"
                     }`}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -123,7 +123,7 @@ export function CollectionRing({ products }: { products: PublicProduct[] }) {
                     <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent_35%,rgba(255,255,255,.45)_50%,transparent_65%)] transition duration-[1.1s] group-hover:translate-x-full" />
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-3 text-white [backface-visibility:hidden]">
                       <p className="line-clamp-1 text-xs font-bold sm:text-sm">{it.name}</p>
-                      <p className="text-[11px] font-extrabold text-[#fde68a] sm:text-xs">{egp(it.price)}</p>
+                      <p className="text-[11px] font-extrabold text-[#f1dfb8] sm:text-xs">{egp(it.price)}</p>
                     </div>
                   </Link>
                 </div>
@@ -136,7 +136,7 @@ export function CollectionRing({ products }: { products: PublicProduct[] }) {
       {/* front piece details + controls */}
       <div className="relative z-10 mt-2 flex flex-col items-center gap-5">
         <div className="flex items-center gap-4">
-          <button onClick={() => go(-1)} aria-label="السابق" className="grid size-12 place-items-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white hover:text-[#0e2c4e]">
+          <button onClick={() => go(-1)} aria-label="السابق" className="grid size-12 place-items-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white hover:text-[#16130f]">
             <ArrowRight className="size-5" />
           </button>
           <div className="min-w-[230px] text-center">
@@ -148,13 +148,13 @@ export function CollectionRing({ products }: { products: PublicProduct[] }) {
                 exit={{ opacity: 0, y: -14, filter: "blur(6px)" }}
                 transition={{ duration: 0.35 }}
               >
-                <p className="font-serif text-xs italic tracking-[.3em] text-[#5eead4]">#{p.model}</p>
+                <p className="font-serif text-xs italic tracking-[.3em] text-[#e2c48f]">#{p.model}</p>
                 <p className="mt-1 text-xl font-extrabold text-white sm:text-2xl">{p.name}</p>
-                <p className="mt-1 text-lg font-extrabold text-[#fbbf24]">{egp(p.price)}</p>
+                <p className="mt-1 text-lg font-extrabold text-[#d4b483]">{egp(p.price)}</p>
               </motion.div>
             </AnimatePresence>
           </div>
-          <button onClick={() => go(1)} aria-label="التالي" className="grid size-12 place-items-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white hover:text-[#0e2c4e]">
+          <button onClick={() => go(1)} aria-label="التالي" className="grid size-12 place-items-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white hover:text-[#16130f]">
             <ArrowLeft className="size-5" />
           </button>
         </div>

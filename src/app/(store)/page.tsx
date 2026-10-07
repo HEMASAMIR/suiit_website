@@ -26,7 +26,7 @@ export default async function Home() {
         <Categories categories={categories} counts={counts} />
       </section>
 
-      <section className="relative mb-24 overflow-hidden bg-gradient-to-b from-[#07182b] via-[#0e2c4e] to-[#07182b] py-20">
+      <section className="relative mb-24 overflow-hidden bg-gradient-to-b from-[#0d0c0b] via-[#16130f] to-[#0d0c0b] py-20">
         <div className="grid-lines pointer-events-none absolute inset-0 opacity-40" />
         <div className="pointer-events-none absolute -right-32 top-10 size-[30rem] rounded-full bg-primary/25 blur-[130px]" />
         <div className="pointer-events-none absolute -left-32 bottom-0 size-[26rem] rounded-full bg-gold/15 blur-[130px]" />
@@ -95,7 +95,7 @@ export default async function Home() {
 
       <section className="container-z pt-24">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[2.5rem] bg-welcome p-10 text-center text-white sm:p-16">
+          <div className="relative overflow-hidden rounded-lg bg-welcome p-10 text-center text-white sm:p-16">
             <p className="pointer-events-none absolute -bottom-10 left-0 right-0 select-none font-serif text-[9rem] leading-none text-white/10">VESTRO</p>
             <h2 className="relative text-3xl font-extrabold sm:text-4xl">محتاج مساعدة في المقاس أو حجز إيجار؟</h2>
             <p className="relative mx-auto mt-3 max-w-lg text-white/85">فريقنا موجود على واتساب يساعدك تختار المقاس والقَصّة المناسبة، ويحجزلك بدلة المناسبة</p>

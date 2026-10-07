@@ -135,7 +135,7 @@ export default function ProductsPage() {
 function ProductForm({ draft, cats, onSave, onCancel }: { draft: Draft; cats: Category[]; onSave: (d: Draft) => Promise<void>; onCancel: () => void }) {
   const [d, setD] = useState<Draft>(draft);
   const [busy, setBusy] = useState(false);
-  const [color, setColor] = useState<ColorOption>({ name: "", hex: "#0d9488" });
+  const [color, setColor] = useState<ColorOption>({ name: "", hex: "#9a7b4f" });
   const [size, setSize] = useState("");
   const set = <K extends keyof Draft>(k: K, v: Draft[K]) => setD((x) => ({ ...x, [k]: v }));
   const margin = d.price - d.cost;
@@ -176,11 +176,11 @@ function ProductForm({ draft, cats, onSave, onCancel }: { draft: Draft; cats: Ca
           <div><label className="label">السعر قبل الخصم</label><input type="number" min={0} value={d.comparePrice ?? 0} onChange={(e) => set("comparePrice", +e.target.value)} className="input" /></div>
           <div><label className="label">التكلفة (سعر الشراء) *</label><input required type="number" min={0} value={d.cost} onChange={(e) => set("cost", +e.target.value)} className="input" /></div>
         </div>
-        <div className={`rounded-2xl p-3 text-sm ${margin >= 0 ? "bg-emerald-50 text-emerald-800 dark:bg-emerald-500/10 dark:text-emerald-300" : "bg-rose-50 text-rose-700 dark:bg-rose-500/10 dark:text-rose-300"}`}>
+        <div className={`rounded-lg p-3 text-sm ${margin >= 0 ? "bg-emerald-50 text-emerald-800 dark:bg-emerald-500/10 dark:text-emerald-300" : "bg-rose-50 text-rose-700 dark:bg-rose-500/10 dark:text-rose-300"}`}>
           ربح القطعة: <b>{egp(margin)}</b> — هامش الربح <b>{d.price ? Math.round((margin / d.price) * 100) : 0}%</b>
         </div>
 
-        <div className="rounded-2xl border-2 border-dashed border-primary/30 p-4">
+        <div className="rounded-lg border-2 border-dashed border-primary/30 p-4">
           <p className="mb-3 text-sm font-extrabold">🤵 الإيجار والقَصّة</p>
           <div className="grid gap-4 sm:grid-cols-3">
             <div><label className="label">سعر الإيجار (0 = مش للإيجار)</label><input type="number" min={0} value={d.rentPrice ?? 0} onChange={(e) => set("rentPrice", +e.target.value)} className="input" /></div>

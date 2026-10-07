@@ -58,7 +58,7 @@ export function ProductView({ p, categoryName, whatsapp, returnDays, returnShipp
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative aspect-[4/5] cursor-zoom-in overflow-hidden rounded-[2rem] bg-surface-2"
+          className="relative aspect-[4/5] cursor-zoom-in overflow-hidden rounded-xl bg-surface-2"
           onMouseMove={(e) => {
             const r = e.currentTarget.getBoundingClientRect();
             setZoom({ on: true, x: ((e.clientX - r.left) / r.width) * 100, y: ((e.clientY - r.top) / r.height) * 100 });
@@ -86,7 +86,7 @@ export function ProductView({ p, categoryName, whatsapp, returnDays, returnShipp
         {p.images.length > 1 && (
           <div className="no-scrollbar mt-4 flex gap-3 overflow-x-auto">
             {p.images.map((s, k) => (
-              <button key={s + k} onClick={() => setImg(k)} className={`relative aspect-[4/5] w-20 shrink-0 overflow-hidden rounded-2xl border-2 transition ${k === img ? "border-primary" : "border-transparent opacity-60 hover:opacity-100"}`}>
+              <button key={s + k} onClick={() => setImg(k)} className={`relative aspect-[4/5] w-20 shrink-0 overflow-hidden rounded-lg border-2 transition ${k === img ? "border-primary" : "border-transparent opacity-60 hover:opacity-100"}`}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={s} alt="" className="size-full object-cover" />
               </button>
@@ -104,10 +104,10 @@ export function ProductView({ p, categoryName, whatsapp, returnDays, returnShipp
         </p>
 
         {rentable && (
-          <div className="mt-6 grid grid-cols-2 gap-1 rounded-2xl border-2 border-line bg-surface-2 p-1" role="tablist" aria-label="شراء أو إيجار">
+          <div className="mt-6 grid grid-cols-2 gap-1 rounded-lg border-2 border-line bg-surface-2 p-1" role="tablist" aria-label="شراء أو إيجار">
             {(["buy", "rent"] as const).map((m) => (
               <button key={m} role="tab" aria-selected={mode === m} onClick={() => setMode(m)} className={`relative rounded-xl py-3 text-sm font-extrabold transition ${mode === m ? "text-white" : "text-muted hover:text-ink"}`}>
-                {mode === m && <motion.span layoutId="mode-pill" className="absolute inset-0 rounded-xl bg-gradient-to-l from-primary to-[#0e2c4e] shadow-lg" transition={{ type: "spring", stiffness: 420, damping: 34 }} />}
+                {mode === m && <motion.span layoutId="mode-pill" className="absolute inset-0 rounded-xl bg-gradient-to-l from-primary to-[#16130f] shadow-lg" transition={{ type: "spring", stiffness: 420, damping: 34 }} />}
                 <span className="relative">{m === "buy" ? `شراء — ${egp(p.price)}` : `إيجار — ${egp(p.rentPrice!)}`}</span>
               </button>
             ))}
@@ -126,7 +126,7 @@ export function ProductView({ p, categoryName, whatsapp, returnDays, returnShipp
         <AnimatePresence>
           {renting && (
             <motion.div key="rent" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="overflow-hidden">
-              <div className="mt-5 rounded-3xl border-2 border-dashed border-primary/40 bg-primary-soft/50 p-5">
+              <div className="mt-5 rounded-xl border-2 border-dashed border-primary/40 bg-primary-soft/50 p-5">
                 <label className="label flex items-center gap-2 text-sm"><CalendarDays className="size-4 text-primary" /> ميعاد المناسبة *</label>
                 <input type="date" value={rentDate} min={isoDay(1)} max={isoDay(180)} onChange={(e) => setRentDate(e.target.value)} className="input" />
                 {rentDate && <p className="mt-2 text-xs font-bold text-primary">📅 {fmtRentDate(rentDate)} — البدلة توصلك قبلها بيوم مكوية ومتغلفة</p>}
@@ -161,7 +161,7 @@ export function ProductView({ p, categoryName, whatsapp, returnDays, returnShipp
             <p className="label text-sm">المقاس</p>
             <div className="flex flex-wrap gap-2">
               {p.sizes.map((s) => (
-                <button key={s} onClick={() => setSize(s)} className={`min-w-14 rounded-2xl border-2 px-4 py-2.5 text-sm font-bold transition ${size === s ? "border-primary bg-primary text-white" : "border-line hover:border-primary"}`}>
+                <button key={s} onClick={() => setSize(s)} className={`min-w-14 rounded-lg border-2 px-4 py-2.5 text-sm font-bold transition ${size === s ? "border-primary bg-primary text-white" : "border-line hover:border-primary"}`}>
                   {s}
                 </button>
               ))}
@@ -209,7 +209,7 @@ export function ProductView({ p, categoryName, whatsapp, returnDays, returnShipp
             );
           })}
         </div>
-        <p className="mt-3 flex items-start gap-2 rounded-2xl border border-dashed border-primary/40 bg-primary-soft/60 px-4 py-3 text-xs leading-6">
+        <p className="mt-3 flex items-start gap-2 rounded-lg border border-dashed border-primary/40 bg-primary-soft/60 px-4 py-3 text-xs leading-6">
           <RefreshCcw className="mt-0.5 size-4 shrink-0 text-primary" />
           <span>
             <b>افحص قبل ما تدفع:</b> لو القطعة معجبتكش وقت الاستلام، رجّعها مع المندوب وادفع{" "}

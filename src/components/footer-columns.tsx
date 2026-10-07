@@ -17,8 +17,8 @@ const col = {
 function ColTitle({ icon: Icon, children }: { icon: typeof Package; children: React.ReactNode }) {
   return (
     <h4 className="mb-5 flex items-center gap-2.5 text-base font-extrabold">
-      <span className="grid size-8 place-items-center rounded-lg bg-gradient-to-br from-[#14b8a6] to-[#0e2c4e] shadow-lg shadow-black/20">
-        <Icon className="size-4 text-[#fbbf24]" />
+      <span className="grid size-8 place-items-center rounded-lg bg-gradient-to-br from-[#c9a96e] to-[#16130f] shadow-lg shadow-black/20">
+        <Icon className="size-4 text-[#d4b483]" />
       </span>
       {children}
       <span className="h-px flex-1 bg-gradient-to-l from-white/0 via-white/10 to-white/20" />
@@ -29,9 +29,9 @@ function ColTitle({ icon: Icon, children }: { icon: typeof Package; children: Re
 function NavLink({ href, icon: Icon, children }: { href: string; icon: typeof Package; children: React.ReactNode }) {
   return (
     <Link href={href} className="group flex items-center gap-3 rounded-xl px-2 py-2 text-sm text-white/70 transition hover:bg-white/[.05] hover:text-white">
-      <Icon className="size-4 text-[#5eead4]/70 transition group-hover:text-[#5eead4]" />
+      <Icon className="size-4 text-[#e2c48f]/70 transition group-hover:text-[#e2c48f]" />
       <span className="flex-1">{children}</span>
-      <ArrowLeft className="size-3.5 translate-x-2 text-[#fbbf24] opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+      <ArrowLeft className="size-3.5 translate-x-2 text-[#d4b483] opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
     </Link>
   );
 }
@@ -60,10 +60,10 @@ export function FooterColumns({ settings, categories }: { settings: Settings; ca
       {/* Brand */}
       <motion.div custom={0} variants={col} className="relative">
         <p className="text-gold-shimmer inline-block font-serif text-5xl tracking-[.2em]">{settings.storeName}</p>
-        <p className="mt-1 font-serif text-xs italic tracking-[.35em] text-[#5eead4]/80">EST. 2026 • CAIRO</p>
+        <p className="mt-1 font-serif text-xs italic tracking-[.35em] text-[#e2c48f]/80">EST. 2026 • CAIRO</p>
         <p className="mt-5 max-w-sm text-sm leading-7 text-white/60">{settings.aboutText}</p>
 
-        <div className="mt-6 inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[.04] px-4 py-3">
+        <div className="mt-6 inline-flex items-center gap-3 rounded-lg border border-white/10 bg-white/[.04] px-4 py-3">
           <span className="text-2xl">🤵</span>
           <span>
             <span className="block text-sm font-bold text-white/90">شراء • إيجار • بوكس فيت</span>
@@ -84,10 +84,10 @@ export function FooterColumns({ settings, categories }: { settings: Settings; ca
                 whileInView={{ scale: 1, rotate: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 + i * 0.1, type: "spring", stiffness: 260 }}
-                className={`group relative grid size-11 place-items-center rounded-2xl border border-white/15 bg-white/[.04] transition duration-300 hover:-translate-y-1.5 hover:border-transparent hover:shadow-xl ${so.hover}`}
+                className={`group relative grid size-11 place-items-center rounded-lg border border-white/15 bg-white/[.04] transition duration-300 hover:-translate-y-1.5 hover:border-transparent hover:shadow-xl ${so.hover}`}
               >
                 <svg viewBox="0 0 24 24" className="size-[18px] fill-current transition group-hover:scale-110"><path d={so.path} /></svg>
-                <span className="pointer-events-none absolute -top-9 rounded-lg bg-white px-2 py-1 text-[10px] font-bold text-[#0e2c4e] opacity-0 transition group-hover:-top-10 group-hover:opacity-100">{so.label}</span>
+                <span className="pointer-events-none absolute -top-9 rounded-lg bg-white px-2 py-1 text-[10px] font-bold text-[#16130f] opacity-0 transition group-hover:-top-10 group-hover:opacity-100">{so.label}</span>
               </motion.a>
             ))}
           </div>
@@ -95,18 +95,18 @@ export function FooterColumns({ settings, categories }: { settings: Settings; ca
       </motion.div>
 
       {/* Categories with thumbnails */}
-      <motion.div custom={1} variants={col} className="rounded-[1.75rem] border border-white/[.07] bg-white/[.025] p-5 backdrop-blur-sm">
+      <motion.div custom={1} variants={col} className="rounded-lg border border-white/[.07] bg-white/[.025] p-5 backdrop-blur-sm">
         <ColTitle icon={FolderHeart}>الأقسام</ColTitle>
         <ul className="space-y-1">
           {categories.map((c) => (
             <li key={c.id}>
               <Link href={`/shop?category=${c.slug}`} className="group flex items-center gap-3 rounded-xl p-1.5 transition hover:bg-white/[.06]">
-                <span className="relative size-10 shrink-0 overflow-hidden rounded-xl ring-1 ring-white/10 transition group-hover:ring-[#5eead4]/60">
+                <span className="relative size-10 shrink-0 overflow-hidden rounded-xl ring-1 ring-white/10 transition group-hover:ring-[#e2c48f]/60">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={c.image} alt="" className="size-full object-cover transition duration-500 group-hover:scale-125" />
                 </span>
                 <span className="flex-1 text-sm text-white/75 transition group-hover:text-white">{c.name}</span>
-                <ArrowLeft className="size-3.5 translate-x-2 text-[#fbbf24] opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+                <ArrowLeft className="size-3.5 translate-x-2 text-[#d4b483] opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
               </Link>
             </li>
           ))}
@@ -114,7 +114,7 @@ export function FooterColumns({ settings, categories }: { settings: Settings; ca
       </motion.div>
 
       {/* Help */}
-      <motion.div custom={2} variants={col} className="rounded-[1.75rem] border border-white/[.07] bg-white/[.025] p-5 backdrop-blur-sm">
+      <motion.div custom={2} variants={col} className="rounded-lg border border-white/[.07] bg-white/[.025] p-5 backdrop-blur-sm">
         <ColTitle icon={LifeBuoy}>مساعدة</ColTitle>
         <div className="space-y-0.5">
           <NavLink href="/track" icon={Truck}>تتبع طلبك</NavLink>
@@ -123,13 +123,13 @@ export function FooterColumns({ settings, categories }: { settings: Settings; ca
           <NavLink href="/login" icon={LogIn}>دخول / حساب جديد</NavLink>
           <NavLink href="/checkout" icon={ArrowLeft}>إتمام الطلب</NavLink>
         </div>
-        <div className="mt-4 flex items-start gap-2 rounded-xl bg-[#fbbf24]/10 p-3 text-xs text-[#fde68a]">
+        <div className="mt-4 flex items-start gap-2 rounded-xl bg-[#d4b483]/10 p-3 text-xs text-[#f1dfb8]">
           <RefreshCcw className="mt-0.5 size-3.5 shrink-0" /> استبدال واسترجاع سهل خلال {settings.returnDays} يوم من الاستلام
         </div>
       </motion.div>
 
       {/* Contact */}
-      <motion.div custom={3} variants={col} className="rounded-[1.75rem] border border-white/[.07] bg-white/[.025] p-5 backdrop-blur-sm">
+      <motion.div custom={3} variants={col} className="rounded-lg border border-white/[.07] bg-white/[.025] p-5 backdrop-blur-sm">
         <ColTitle icon={MessageCircle}>تواصل معانا</ColTitle>
         <div className="mb-4 flex items-center gap-2 rounded-xl bg-white/[.04] px-3 py-2.5 text-xs">
           <span className="relative flex size-2.5">
@@ -146,8 +146,8 @@ export function FooterColumns({ settings, categories }: { settings: Settings; ca
             { href: "/track", icon: MapPin, label: "التوصيل", value: "لكل محافظات مصر" },
           ].map((x) => (
             <a key={x.label} href={x.href} className="group flex items-center gap-3 rounded-xl p-1.5 transition hover:bg-white/[.06]">
-              <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-white/[.06] ring-1 ring-white/10 transition group-hover:bg-[#14b8a6] group-hover:ring-transparent">
-                <x.icon className="size-4 text-[#5eead4] transition group-hover:text-white" />
+              <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-white/[.06] ring-1 ring-white/10 transition group-hover:bg-[#c9a96e] group-hover:ring-transparent">
+                <x.icon className="size-4 text-[#e2c48f] transition group-hover:text-white" />
               </span>
               <span className="min-w-0">
                 <span className="block text-[11px] text-white/45">{x.label}</span>
@@ -184,7 +184,7 @@ export function BackToTop() {
         <circle cx="24" cy="24" r="21" className="fill-none stroke-line" strokeWidth="3" />
         <motion.circle cx="24" cy="24" r="21" className="fill-none" stroke="url(#btt)" strokeWidth="3" strokeLinecap="round" style={{ pathLength: scrollYProgress }} />
         <defs>
-          <linearGradient id="btt" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#14b8a6" /><stop offset="100%" stopColor="#fbbf24" /></linearGradient>
+          <linearGradient id="btt" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#c9a96e" /><stop offset="100%" stopColor="#d4b483" /></linearGradient>
         </defs>
       </svg>
       <ArrowUp className="size-5 text-primary transition group-hover:-translate-y-0.5" />

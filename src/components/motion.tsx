@@ -53,7 +53,7 @@ export function ScrollProgress() {
   return (
     <motion.div
       style={{ scaleX }}
-      className="fixed inset-x-0 top-0 z-[70] h-[3px] origin-right bg-gradient-to-l from-[#0f172a] via-primary to-[#fbbf24]"
+      className="fixed inset-x-0 top-0 z-[70] h-[3px] origin-right bg-gradient-to-l from-[#0f172a] via-primary to-[#d4b483]"
     />
   );
 }

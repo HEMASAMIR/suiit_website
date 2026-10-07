@@ -2,35 +2,35 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Manara palette — teal primary, navy brand, gold accent (shared with manara-web). */
+/* VESTRO — "Onyx & Champagne": ivory cloth, onyx ink, champagne-gold trim. */
 :root {
-  --bg: #f8fafc;
-  --surface: #ffffff;
-  --surface-2: #f1f5f9;
-  --ink: #0f172a;
-  --muted: #64748b;
-  --border: #e2e8f0;
-  --primary: #0d9488;
+  --bg: #f7f3ec;
+  --surface: #fffdf9;
+  --surface-2: #efe8dc;
+  --ink: #16130f;
+  --muted: #6f665b;
+  --border: #e3d9c8;
+  --primary: #8a6a3f;
   --primary-ink: #ffffff;
-  --primary-soft: #e3f5f3;
-  --blush: #d3f1ec;
-  --emerald: #0e2c4e;
-  --gold: #f59e0b;
+  --primary-soft: #f2e8d6;
+  --blush: #e8dcc5;
+  --emerald: #16130f;
+  --gold: #b8935a;
 }
 
 .dark {
-  --bg: #07182b;
-  --surface: #0e2238;
-  --surface-2: #0a1c30;
-  --ink: #f1f5f9;
-  --muted: #94a3b8;
-  --border: #1e3a5a;
-  --primary: #14b8a6;
-  --primary-ink: #ffffff;
-  --primary-soft: #0f3340;
-  --blush: #0a2636;
-  --emerald: #fbbf24;
-  --gold: #fbbf24;
+  --bg: #0d0c0b;
+  --surface: #171513;
+  --surface-2: #12100e;
+  --ink: #f3ede3;
+  --muted: #a39a8d;
+  --border: #2c2721;
+  --primary: #d4b483;
+  --primary-ink: #16130f;
+  --primary-soft: #2a2319;
+  --blush: #2a2319;
+  --emerald: #d4b483;
+  --gold: #d4b483;
 }
 
 @theme inline {
@@ -72,20 +72,20 @@ html.dark { color-scheme: dark; }
 .brand-stripe { display: flex; direction: ltr; height: 4px; }
 .brand-stripe > span { flex: 1; }
 .brand-stripe > span:nth-child(1) { background: #0f172a; }
-.brand-stripe > span:nth-child(2) { background: #0d9488; }
-.brand-stripe > span:nth-child(3) { background: #fbbf24; }
+.brand-stripe > span:nth-child(2) { background: #9a7b4f; }
+.brand-stripe > span:nth-child(3) { background: #d4b483; }
 
 .grid-lines {
-  background-image: linear-gradient(to right, rgba(14, 44, 78, .06) 1px, transparent 1px), linear-gradient(to bottom, rgba(14, 44, 78, .06) 1px, transparent 1px);
+  background-image: linear-gradient(to right, rgba(22, 19, 15, .06) 1px, transparent 1px), linear-gradient(to bottom, rgba(22, 19, 15, .06) 1px, transparent 1px);
   background-size: 44px 44px;
   mask-image: radial-gradient(ellipse at top, black, transparent 70%);
 }
 .dark .grid-lines { background-image: linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px); }
 .bg-welcome {
-  background: radial-gradient(ellipse at top right, rgba(45, 212, 191, .45), transparent 55%), radial-gradient(ellipse at bottom left, rgba(251, 191, 36, .3), transparent 55%), linear-gradient(135deg, #0f766e 0%, #0e2c4e 100%);
+  background: radial-gradient(ellipse at top right, rgba(201, 169, 110, .45), transparent 55%), radial-gradient(ellipse at bottom left, rgba(212, 180, 131, .3), transparent 55%), linear-gradient(135deg, #8a6a3f 0%, #16130f 100%);
 }
 .bg-hero {
-  background: radial-gradient(ellipse at top left, rgba(20, 184, 166, .38), transparent 55%), radial-gradient(ellipse at bottom right, rgba(245, 158, 11, .24), transparent 55%), #0e2c4e;
+  background: radial-gradient(ellipse at top left, rgba(201, 169, 110, .38), transparent 55%), radial-gradient(ellipse at bottom right, rgba(245, 158, 11, .24), transparent 55%), #16130f;
 }
 
 body {
@@ -107,14 +107,14 @@ body {
 
 @utility container-z { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
 @utility btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all duration-300 active:scale-[.97] disabled:opacity-50 disabled:pointer-events-none; }
-@utility btn-primary { @apply btn bg-[linear-gradient(270deg,#0e2c4e_0%,#0f766e_100%)] text-white dark:bg-[linear-gradient(270deg,#0f766e_0%,#14b8a6_100%)] shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35 hover:-translate-y-0.5; }
+@utility btn-primary { @apply btn bg-[linear-gradient(270deg,#16130f_0%,#8a6a3f_100%)] text-white dark:bg-[linear-gradient(270deg,#8a6a3f_0%,#c9a96e_100%)] shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35 hover:-translate-y-0.5; }
 @utility btn-dark { @apply btn bg-ink text-bg hover:-translate-y-0.5; }
 @utility btn-ghost { @apply btn border border-line bg-surface text-ink hover:border-primary hover:text-primary; }
 @utility input { @apply w-full rounded-2xl border border-line bg-surface px-4 py-3 text-sm text-ink outline-none transition placeholder:text-muted/70 focus:border-primary focus:ring-4 focus:ring-primary/10; }
 @utility label { @apply mb-1.5 block text-xs font-bold text-muted; }
 @utility card { @apply rounded-3xl border border-line bg-surface; }
 @utility chip { @apply inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-bold; }
-@utility text-gradient { @apply bg-gradient-to-l from-primary via-[#0ea5e9] to-[#d97706] bg-clip-text text-transparent; background-size: 200% auto; }
+@utility text-gradient { @apply bg-gradient-to-l from-primary via-[#c9a96e] to-[#8a6a3f] bg-clip-text text-transparent; background-size: 200% auto; }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
@@ -135,10 +135,10 @@ body {
 /* ---------- Announcement ticker ---------- */
 .ticker {
   background:
-    radial-gradient(ellipse at 15% 50%, rgba(45, 212, 191, .35), transparent 45%),
-    radial-gradient(ellipse at 85% 50%, rgba(251, 191, 36, .22), transparent 45%),
-    linear-gradient(90deg, #0e2c4e 0%, #0f766e 50%, #0e2c4e 100%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08), 0 8px 24px -12px rgba(14, 44, 78, .45);
+    radial-gradient(ellipse at 15% 50%, rgba(201, 169, 110, .35), transparent 45%),
+    radial-gradient(ellipse at 85% 50%, rgba(212, 180, 131, .22), transparent 45%),
+    linear-gradient(90deg, #16130f 0%, #8a6a3f 50%, #16130f 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08), 0 8px 24px -12px rgba(22, 19, 15, .45);
 }
 .ticker::after {
   content: "";
@@ -152,10 +152,10 @@ body {
 .ticker-mask { mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
 .ticker-track { animation: ticker 45s linear infinite; }
 .ticker-code {
-  background: linear-gradient(110deg, #fcd34d 0%, #fde68a 40%, #fff 50%, #fde68a 60%, #f59e0b 100%);
+  background: linear-gradient(110deg, #e2c48f 0%, #f1dfb8 40%, #fff 50%, #f1dfb8 60%, #b8935a 100%);
   background-size: 250% 100%;
   animation: shimmer 2.4s linear infinite;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, .35), 0 4px 14px -4px rgba(251, 191, 36, .7);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .35), 0 4px 14px -4px rgba(212, 180, 131, .7);
 }
 @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @keyframes sweep { 0% { transform: translateX(-100%); } 60%, 100% { transform: translateX(100%); } }
@@ -175,8 +175,8 @@ body {
 .btn-primary > * { position: relative; }
 
 /* Soft brand wash used by hero-type sections */
-.soft-wash { background: linear-gradient(180deg, #effcfa 0%, #ffffff 55%, #fffaf0 100%); }
-.dark .soft-wash { background: linear-gradient(180deg, #0a2636 0%, #07182b 55%, #0b1f33 100%); }
+.soft-wash { background: linear-gradient(180deg, #f6efe3 0%, #ffffff 55%, #fbf7f0 100%); }
+.dark .soft-wash { background: linear-gradient(180deg, #1a1612 0%, #0d0c0b 55%, #110f0d 100%); }
 
 .link-dot { position: relative; transition: color .3s, padding .3s; }
 .link-dot::before {
@@ -186,16 +186,16 @@ body {
   top: 50%;
   width: 6px; height: 6px;
   border-radius: 99px;
-  background: #fbbf24;
+  background: #d4b483;
   transform: translateY(-50%) scale(0);
   transition: transform .3s;
 }
-.link-dot:hover { color: #5eead4; padding-right: 6px; }
+.link-dot:hover { color: #e2c48f; padding-right: 6px; }
 .link-dot:hover::before { transform: translateY(-50%) scale(1); }
 
 .footer-mark {
   color: transparent;
-  background: linear-gradient(110deg, rgba(255, 255, 255, .05) 30%, rgba(94, 234, 212, .28) 50%, rgba(255, 255, 255, .05) 70%);
+  background: linear-gradient(110deg, rgba(255, 255, 255, .05) 30%, rgba(226, 196, 143, .28) 50%, rgba(255, 255, 255, .05) 70%);
   background-size: 250% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -204,20 +204,20 @@ body {
 
 /* Brighter, letter-friendly shimmer for the footer wordmark */
 .footer-mark {
-  background: linear-gradient(110deg, rgba(94, 234, 212, .16) 25%, rgba(94, 234, 212, .55) 45%, rgba(251, 191, 36, .45) 55%, rgba(94, 234, 212, .16) 75%);
+  background: linear-gradient(110deg, rgba(226, 196, 143, .16) 25%, rgba(226, 196, 143, .55) 45%, rgba(212, 180, 131, .45) 55%, rgba(226, 196, 143, .16) 75%);
   background-size: 300% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   transition: filter .4s;
 }
-.footer-mark:hover { filter: drop-shadow(0 0 18px rgba(45, 212, 191, .55)); }
+.footer-mark:hover { filter: drop-shadow(0 0 18px rgba(201, 169, 110, .55)); }
 
 /* ---------- Bridal banner ---------- */
 .bridal-card {
   background:
-    radial-gradient(ellipse at 85% 15%, rgba(45, 212, 191, .25), transparent 50%),
-    linear-gradient(135deg, #0f766e 0%, #0e2c4e 45%, #0b1f38 100%);
-  box-shadow: 0 40px 80px -40px rgba(14, 44, 78, .7);
+    radial-gradient(ellipse at 85% 15%, rgba(201, 169, 110, .25), transparent 50%),
+    linear-gradient(135deg, #8a6a3f 0%, #16130f 45%, #0f0d0b 100%);
+  box-shadow: 0 40px 80px -40px rgba(22, 19, 15, .7);
 }
 .bridal-orb { animation: orb 12s ease-in-out infinite; }
 @keyframes orb {
@@ -227,12 +227,12 @@ body {
 }
 .text-gold-shimmer {
   color: transparent;
-  background: linear-gradient(110deg, #f59e0b 0%, #fde68a 35%, #fff 50%, #fde68a 65%, #f59e0b 100%);
+  background: linear-gradient(110deg, #b8935a 0%, #f1dfb8 35%, #fff 50%, #f1dfb8 65%, #b8935a 100%);
   background-size: 250% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   animation: shimmer 3s linear infinite;
-  filter: drop-shadow(0 4px 20px rgba(251, 191, 36, .25));
+  filter: drop-shadow(0 4px 20px rgba(212, 180, 131, .25));
 }
 
 /* ---------- Spotlight + animated gradient border ---------- */
@@ -243,7 +243,7 @@ body {
   inset: 0;
   border-radius: inherit;
   padding: 1.5px;
-  background: conic-gradient(from var(--angle), transparent 0 55%, #14b8a6 70%, #fbbf24 85%, transparent 100%);
+  background: conic-gradient(from var(--angle), transparent 0 55%, #c9a96e 70%, #d4b483 85%, transparent 100%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -261,7 +261,7 @@ body {
   pointer-events: none;
   opacity: 0;
   transition: opacity .4s;
-  background: radial-gradient(260px circle at var(--x, 50%) var(--y, 50%), rgba(20, 184, 166, .16), transparent 60%);
+  background: radial-gradient(260px circle at var(--x, 50%) var(--y, 50%), rgba(201, 169, 110, .16), transparent 60%);
 }
 .spotlight:hover::before { opacity: 1; }
 
@@ -272,10 +272,55 @@ body {
 /* ---------- Admin ---------- */
 .admin-side {
   background:
-    radial-gradient(ellipse at 100% 0%, rgba(45, 212, 191, .18), transparent 50%),
-    linear-gradient(180deg, #0e2c4e 0%, #0b2340 55%, #081a30 100%);
-  box-shadow: -20px 0 50px -30px rgba(8, 26, 48, .6);
+    radial-gradient(ellipse at 100% 0%, rgba(201, 169, 110, .18), transparent 50%),
+    linear-gradient(180deg, #16130f 0%, #1a1612 55%, #0d0b09 100%);
+  box-shadow: -20px 0 50px -30px rgba(13, 11, 9, .6);
 }
 .reveal { opacity: 0; transform: translateY(26px) scale(.985); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); }
 .reveal.in { opacity: 1; transform: none; }
 @keyframes ring { 0%, 70%, 100% { transform: rotate(0); } 75% { transform: rotate(14deg); } 80% { transform: rotate(-12deg); } 85% { transform: rotate(9deg); } 90% { transform: rotate(-6deg); } }
+
+/* ===================================================================== */
+/* VESTRO identity — tailored lines instead of RAYA's soft round shapes  */
+/* ===================================================================== */
+@theme inline { --font-display: var(--font-display), var(--font-cairo), serif; }
+
+h1, h2, h3, .font-display { font-family: var(--font-display), var(--font-cairo), serif; letter-spacing: 0; }
+h1, h2 { font-weight: 700 !important; }
+
+/* Pinstripe cloth replaces the grid */
+.grid-lines {
+  background-image: repeating-linear-gradient(90deg, rgba(138, 106, 63, .09) 0 1px, transparent 1px 22px) !important;
+  background-size: auto !important;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+.dark .grid-lines { background-image: repeating-linear-gradient(90deg, rgba(212, 180, 131, .06) 0 1px, transparent 1px 22px) !important; }
+
+/* Brand stripe: onyx • champagne • ivory */
+.brand-stripe > span:nth-child(1) { background: #16130f; }
+.brand-stripe > span:nth-child(2) { background: #b8935a; }
+.brand-stripe > span:nth-child(3) { background: #e2c48f; }
+
+/* Tailored buttons: squared shoulders, gold hairline */
+@utility btn { @apply inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-sm font-bold tracking-wide transition-all duration-300 active:scale-[.98] disabled:opacity-50 disabled:pointer-events-none; }
+.btn-primary { background: linear-gradient(135deg, #16130f 0%, #2b2419 60%, #6e5532 100%) !important; color: #f7f3ec !important; box-shadow: 0 0 0 1px rgba(212, 180, 131, .45) inset, 0 14px 30px -14px rgba(22, 19, 15, .55) !important; }
+.dark .btn-primary { background: linear-gradient(135deg, #e2c48f 0%, #c9a96e 55%, #a5834f 100%) !important; color: #16130f !important; box-shadow: 0 14px 30px -14px rgba(212, 180, 131, .45) !important; }
+.btn-ghost { border-color: var(--border); }
+.btn-ghost:hover { border-color: var(--primary); }
+
+@utility card { @apply rounded-xl border border-line bg-surface; }
+@utility input { @apply w-full rounded-md border border-line bg-surface px-4 py-3 text-sm text-ink outline-none transition placeholder:text-muted/70 focus:border-primary focus:ring-4 focus:ring-primary/10; }
+
+/* Ticker: onyx band with champagne text */
+.ticker { background: linear-gradient(90deg, #16130f 0%, #2a2318 50%, #16130f 100%) !important; box-shadow: inset 0 -1px 0 rgba(212, 180, 131, .35), inset 0 1px 0 rgba(212, 180, 131, .2) !important; }
+
+/* Gold-thread underline under section titles & hover lift on images */
+.gold-rule { height: 1px; background: linear-gradient(90deg, transparent, #c9a96e, transparent); }
+
+.soft-wash { background: linear-gradient(180deg, #f2ebdf 0%, #fbf8f2 55%, #f4ecdd 100%) !important; }
+.dark .soft-wash { background: linear-gradient(180deg, #14110e 0%, #0d0c0b 55%, #15120e 100%) !important; }
+.bg-welcome { background: radial-gradient(ellipse at top right, rgba(212, 180, 131, .28), transparent 55%), linear-gradient(135deg, #16130f 0%, #2a2318 100%) !important; }
+.bg-hero { background: radial-gradient(ellipse at top left, rgba(212, 180, 131, .25), transparent 55%), #16130f !important; }
+.bridal-card { background: radial-gradient(ellipse at 85% 15%, rgba(212, 180, 131, .22), transparent 50%), linear-gradient(135deg, #2a2318 0%, #16130f 50%, #0d0b09 100%) !important; }
+.admin-side { background: radial-gradient(ellipse at 100% 0%, rgba(212, 180, 131, .14), transparent 50%), linear-gradient(180deg, #16130f 0%, #110f0c 100%) !important; }
+::selection { background: #c9a96e; color: #16130f; }

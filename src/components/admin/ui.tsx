@@ -53,7 +53,7 @@ export function PageHeader({ title, sub, children }: { title: string; sub?: stri
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="relative mb-8 overflow-hidden rounded-[2rem] border border-line bg-surface/80 p-5 shadow-[0_20px_50px_-30px_rgba(14,44,78,.35)] backdrop-blur sm:p-6"
+      className="relative mb-8 overflow-hidden rounded-xl border border-line bg-surface/80 p-5 shadow-[0_20px_50px_-30px_rgba(14,44,78,.35)] backdrop-blur sm:p-6"
     >
       <div className="pointer-events-none absolute -left-16 -top-16 size-48 rounded-full bg-primary/10 blur-3xl" />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(110deg,transparent_40%,rgba(20,184,166,.08)_50%,transparent_60%)] bg-[length:250%_100%] animate-shimmer" />
@@ -63,7 +63,7 @@ export function PageHeader({ title, sub, children }: { title: string; sub?: stri
             initial={{ scale: 0, rotate: -30 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ type: "spring", stiffness: 260, delay: 0.1 }}
-            className="relative grid size-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-primary to-[#0e2c4e] text-white shadow-lg shadow-primary/30"
+            className="relative grid size-14 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-primary to-[#16130f] text-white shadow-lg shadow-primary/30"
           >
             <nav.icon className="size-6" />
             <span className="absolute -left-1 -top-1 size-3 rounded-full bg-gold ring-4 ring-surface" />
@@ -101,7 +101,7 @@ export function Modal({ open, onClose, title, children, wide }: { open: boolean;
             exit={{ y: 60, opacity: 0 }}
             transition={{ type: "spring", damping: 28, stiffness: 300 }}
             onMouseDown={(e) => e.stopPropagation()}
-            className={`flex max-h-[92dvh] w-full flex-col overflow-hidden rounded-t-[2rem] bg-bg shadow-2xl sm:rounded-[2rem] ${wide ? "sm:max-w-4xl" : "sm:max-w-xl"}`}
+            className={`flex max-h-[92dvh] w-full flex-col overflow-hidden rounded-t-[2rem] bg-bg shadow-2xl sm:rounded-xl ${wide ? "sm:max-w-4xl" : "sm:max-w-xl"}`}
           >
             <div className="flex items-center justify-between border-b border-line px-6 py-4">
               <h3 className="text-lg font-extrabold">{title}</h3>
@@ -189,7 +189,7 @@ export function ImagesInput({ value, onChange, single }: { value: string[]; onCh
             onDragStart={() => setDrag(i)}
             onDragOver={(e) => e.preventDefault()}
             onDrop={() => drag !== null && move(drag, i)}
-            className="group relative h-28 w-24 overflow-hidden rounded-2xl border border-line bg-surface-2"
+            className="group relative h-28 w-24 overflow-hidden rounded-lg border border-line bg-surface-2"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={src} alt="" className="size-full object-cover" />
@@ -201,7 +201,7 @@ export function ImagesInput({ value, onChange, single }: { value: string[]; onCh
           </div>
         ))}
         {(!single || value.length === 0) && (
-          <button type="button" onClick={() => ref.current?.click()} className="grid h-28 w-24 place-items-center rounded-2xl border-2 border-dashed border-line text-muted transition hover:border-primary hover:text-primary">
+          <button type="button" onClick={() => ref.current?.click()} className="grid h-28 w-24 place-items-center rounded-lg border-2 border-dashed border-line text-muted transition hover:border-primary hover:text-primary">
             {busy ? <Loader2 className="size-6 animate-spin" /> : <span className="text-center text-xs"><ImagePlus className="mx-auto mb-1 size-6" />رفع صور</span>}
           </button>
         )}
@@ -254,11 +254,11 @@ export function StatCard({ label, value, tone = "", hint, icon: Icon }: { label:
         e.currentTarget.style.setProperty("--x", `${e.clientX - r.left}px`);
         e.currentTarget.style.setProperty("--y", `${e.clientY - r.top}px`);
       }}
-      className="spotlight glow-border group relative overflow-hidden rounded-[1.75rem] border border-line bg-surface p-5 shadow-[0_15px_40px_-30px_rgba(14,44,78,.4)] transition-shadow hover:shadow-[0_25px_50px_-25px_rgba(13,148,136,.35)]"
+      className="spotlight glow-border group relative overflow-hidden rounded-lg border border-line bg-surface p-5 shadow-[0_15px_40px_-30px_rgba(14,44,78,.4)] transition-shadow hover:shadow-[0_25px_50px_-25px_rgba(13,148,136,.35)]"
     >
       <span className="pointer-events-none absolute -bottom-10 -left-10 size-28 rounded-full bg-primary/5 transition duration-500 group-hover:scale-150 group-hover:bg-primary/10" />
       {Icon && (
-        <span className="absolute left-4 top-4 grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-primary to-[#0e2c4e] text-white shadow-lg shadow-primary/25 transition duration-500 group-hover:-rotate-6 group-hover:scale-110">
+        <span className="absolute left-4 top-4 grid size-11 place-items-center rounded-lg bg-gradient-to-br from-primary to-[#16130f] text-white shadow-lg shadow-primary/25 transition duration-500 group-hover:-rotate-6 group-hover:scale-110">
           <Icon className="size-5" />
         </span>
       )}
@@ -282,7 +282,7 @@ export function EmptyState({ title, text, icon: Icon, action }: { title: string;
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="relative overflow-hidden rounded-[2rem] border border-line bg-surface px-6 py-16 text-center shadow-[0_20px_50px_-35px_rgba(14,44,78,.5)]"
+      className="relative overflow-hidden rounded-xl border border-line bg-surface px-6 py-16 text-center shadow-[0_20px_50px_-35px_rgba(14,44,78,.5)]"
     >
       <div className="grid-lines pointer-events-none absolute inset-0" />
       <div className="pointer-events-none absolute -right-20 -top-20 size-64 rounded-full bg-primary/10 blur-3xl" />
@@ -311,9 +311,9 @@ export function EmptyState({ title, text, icon: Icon, action }: { title: string;
         <motion.span
           animate={{ y: [0, -8, 0] }}
           transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-          className="relative grid size-20 place-items-center rounded-[1.75rem] bg-gradient-to-br from-primary to-[#0e2c4e] text-white shadow-2xl shadow-primary/40"
+          className="relative grid size-20 place-items-center rounded-lg bg-gradient-to-br from-primary to-[#16130f] text-white shadow-2xl shadow-primary/40"
         >
-          <span className="absolute inset-0 rounded-[1.75rem] bg-[linear-gradient(110deg,transparent_35%,rgba(255,255,255,.35)_50%,transparent_65%)] bg-[length:250%_100%] animate-shimmer" />
+          <span className="absolute inset-0 rounded-lg bg-[linear-gradient(110deg,transparent_35%,rgba(255,255,255,.35)_50%,transparent_65%)] bg-[length:250%_100%] animate-shimmer" />
           {Icon ? <Icon className="relative size-9" /> : <Sparkles className="relative size-9" />}
         </motion.span>
       </div>
@@ -329,7 +329,7 @@ export function Skeleton({ rows = 5 }: { rows?: number }) {
   return (
     <div className="space-y-3">
       {Array.from({ length: rows }).map((_, i) => (
-        <div key={i} className="h-16 animate-shimmer rounded-2xl bg-[linear-gradient(90deg,var(--surface-2),var(--surface),var(--surface-2))] bg-[length:200%_100%]" />
+        <div key={i} className="h-16 animate-shimmer rounded-lg bg-[linear-gradient(90deg,var(--surface-2),var(--surface),var(--surface-2))] bg-[length:200%_100%]" />
       ))}
     </div>
   );

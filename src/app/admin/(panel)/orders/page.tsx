@@ -111,7 +111,7 @@ function OrderDetails({ o, onStatus }: { o: Order; onStatus: (s: OrderStatus) =>
     const w = window.open("", "_blank", "width=800,height=900");
     if (!w) return;
     const rows = o.items.map((it) => `<tr><td>${esc(it.name)} <small>#${esc(it.model)}</small><br/><small>${esc(lineNote(it))}</small></td><td>${it.qty}</td><td>${it.price}</td><td>${it.price * it.qty}</td></tr>`).join("");
-    w.document.write(`<html dir="rtl"><head><title>فاتورة ${esc(o.number)}</title><style>body{font-family:Tahoma,sans-serif;padding:32px;color:#0f172a}h1{font-family:Georgia,serif;letter-spacing:.2em;margin:0}table{width:100%;border-collapse:collapse;margin-top:20px}td,th{border-bottom:1px solid #eee;padding:10px;text-align:right}th{background:#e3f5f3}.t{font-size:18px;font-weight:bold;color:#0d9488}.box{display:flex;justify-content:space-between;margin-top:20px}</style></head><body>
+    w.document.write(`<html dir="rtl"><head><title>فاتورة ${esc(o.number)}</title><style>body{font-family:Tahoma,sans-serif;padding:32px;color:#0f172a}h1{font-family:Georgia,serif;letter-spacing:.2em;margin:0}table{width:100%;border-collapse:collapse;margin-top:20px}td,th{border-bottom:1px solid #eee;padding:10px;text-align:right}th{background:#e3f5f3}.t{font-size:18px;font-weight:bold;color:#9a7b4f}.box{display:flex;justify-content:space-between;margin-top:20px}</style></head><body>
     <div class="box"><h1>VESTRO</h1><div>فاتورة رقم <b>${esc(o.number)}</b><br/>${new Date(o.createdAt).toLocaleString("ar-EG")}</div></div>
     <div class="box"><div><b>${esc(o.customer.name)}</b><br/>${esc(o.customer.phone)}${o.customer.phone2 ? " / " + esc(o.customer.phone2) : ""}<br/>${esc(o.customer.governorate)} - ${esc(o.customer.city)}<br/>${esc(o.customer.address)}</div><div>طريقة الدفع: ${PAYMENT[o.paymentMethod]}</div></div>
     <table><tr><th>المنتج</th><th>الكمية</th><th>السعر</th><th>الإجمالي</th></tr>${rows}</table>
@@ -125,7 +125,7 @@ function OrderDetails({ o, onStatus }: { o: Order; onStatus: (s: OrderStatus) =>
       <div className="space-y-5">
         <div className="space-y-3">
           {o.items.map((it, i) => (
-            <div key={i} className="flex items-center gap-3 rounded-2xl bg-surface-2 p-3">
+            <div key={i} className="flex items-center gap-3 rounded-lg bg-surface-2 p-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={it.image} alt="" className="h-16 w-14 rounded-xl object-cover" />
               <div className="flex-1">
@@ -176,7 +176,7 @@ function OrderDetails({ o, onStatus }: { o: Order; onStatus: (s: OrderStatus) =>
           <p className="label">تغيير الحالة</p>
           <div className="grid grid-cols-2 gap-2">
             {ALL.map((s) => (
-              <button key={s} disabled={o.status === s} onClick={() => onStatus(s)} className={`rounded-2xl px-3 py-2.5 text-xs font-bold transition disabled:ring-2 disabled:ring-primary ${STATUS[s].tone} hover:opacity-80`}>
+              <button key={s} disabled={o.status === s} onClick={() => onStatus(s)} className={`rounded-lg px-3 py-2.5 text-xs font-bold transition disabled:ring-2 disabled:ring-primary ${STATUS[s].tone} hover:opacity-80`}>
                 {STATUS[s].label}
               </button>
             ))}

@@ -43,8 +43,8 @@ export default function TrackPage() {
     <div className="pointer-events-none absolute -left-24 bottom-10 size-80 rounded-full bg-gold/15 blur-[100px]" />
     <div className="container-z relative max-w-3xl py-16 sm:py-20">
       <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="text-center">
-        <span className="relative mx-auto grid size-24 animate-float place-items-center rounded-[2rem] bg-gradient-to-br from-primary to-[#0e2c4e] text-white shadow-2xl shadow-primary/30">
-          <span className="absolute inset-0 animate-ping rounded-[2rem] bg-primary/20 [animation-duration:2.5s]" />
+        <span className="relative mx-auto grid size-24 animate-float place-items-center rounded-xl bg-gradient-to-br from-primary to-[#16130f] text-white shadow-2xl shadow-primary/30">
+          <span className="absolute inset-0 animate-ping rounded-xl bg-primary/20 [animation-duration:2.5s]" />
           <PackageSearch className="relative size-10" />
         </span>
         <span className="mt-6 block font-serif text-sm italic tracking-[.3em] text-primary">ORDER TRACKING</span>
@@ -52,11 +52,11 @@ export default function TrackPage() {
         <p className="mt-3 text-muted">اكتب رقم الطلب ورقم الموبايل اللي طلبت بيه، وهتعرف طلبك فين بالظبط</p>
       </motion.div>
       <motion.form initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} onSubmit={go} className="card mt-10 grid gap-3 p-4 shadow-[0_20px_50px_-20px_rgba(14,44,78,.25)] sm:grid-cols-[1fr_1fr_auto] sm:p-5">
-        <label className="flex items-center gap-2 rounded-2xl border border-line bg-surface-2 px-4 transition focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
+        <label className="flex items-center gap-2 rounded-lg border border-line bg-surface-2 px-4 transition focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
           <Hash className="size-4 text-primary" />
           <input required value={number} onChange={(e) => setNumber(e.target.value)} placeholder="رقم الطلب (مثال ZN10001)" className="w-full bg-transparent py-3.5 text-sm uppercase outline-none" />
         </label>
-        <label className="flex items-center gap-2 rounded-2xl border border-line bg-surface-2 px-4 transition focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
+        <label className="flex items-center gap-2 rounded-lg border border-line bg-surface-2 px-4 transition focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
           <Phone className="size-4 text-primary" />
           <input required dir="ltr" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="01xxxxxxxxx" className="w-full bg-transparent py-3.5 text-right text-sm outline-none" />
         </label>
@@ -84,7 +84,7 @@ export default function TrackPage() {
             <OrderTimeline status={res.status} history={res.history} />
             <div className="mt-8 flex flex-wrap gap-3 border-t border-line pt-6">
               {res.items.map((it, i) => (
-                <div key={i} className="flex items-center gap-2 rounded-2xl bg-surface-2 p-2 pl-4">
+                <div key={i} className="flex items-center gap-2 rounded-lg bg-surface-2 p-2 pl-4">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={it.image} alt="" className="size-10 rounded-xl object-cover" />
                   <span className="text-xs font-bold">{it.name} × {it.qty}</span>

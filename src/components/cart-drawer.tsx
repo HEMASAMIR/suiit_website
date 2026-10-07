@@ -49,8 +49,8 @@ export function CartDrawer({ freeShippingThreshold, categories = [] }: { freeShi
                 <div className="grid h-full place-items-center text-center">
                   <div>
                     <div className="relative mx-auto mb-6 grid size-28 animate-float place-items-center">
-                      <span className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-primary/25 to-gold/25 blur-xl" />
-                      <span className="relative grid size-28 place-items-center rounded-[2rem] bg-gradient-to-br from-primary to-[#0e2c4e] text-white shadow-2xl shadow-primary/30">
+                      <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/25 to-gold/25 blur-xl" />
+                      <span className="relative grid size-28 place-items-center rounded-xl bg-gradient-to-br from-primary to-[#16130f] text-white shadow-2xl shadow-primary/30">
                         <ShoppingBag className="size-11" />
                       </span>
                     </div>
@@ -76,7 +76,7 @@ export function CartDrawer({ freeShippingThreshold, categories = [] }: { freeShi
                   {lines.map((l) => (
                     <motion.div key={l.key} layout initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 60, height: 0 }} className="card flex gap-3 p-3">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={l.image} alt={l.name} className="h-24 w-20 rounded-2xl object-cover" />
+                      <img src={l.image} alt={l.name} className="h-24 w-20 rounded-lg object-cover" />
                       <div className="flex flex-1 flex-col">
                         <Link href={`/product/${l.slug}`} onClick={() => setOpen(false)} className="line-clamp-1 text-sm font-bold hover:text-primary">{l.name}</Link>
                         <p className="mt-0.5 text-xs text-muted">{lineNote(l)}</p>

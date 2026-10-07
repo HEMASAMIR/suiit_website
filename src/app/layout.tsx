@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Cairo, Playfair_Display } from "next/font/google";
+import { Cormorant_Garamond, El_Messiri, IBM_Plex_Sans_Arabic } from "next/font/google";
 import { Providers } from "@/components/providers";
 import "./globals.css";
 
-const cairo = Cairo({ subsets: ["arabic", "latin"], weight: ["400", "500", "700", "800"], variable: "--font-cairo" });
-const playfair = Playfair_Display({ subsets: ["latin"], weight: ["400", "600", "700"], style: ["normal", "italic"], variable: "--font-playfair" });
+const plex = IBM_Plex_Sans_Arabic({ subsets: ["arabic", "latin"], weight: ["400", "500", "600", "700"], variable: "--font-cairo" });
+const messiri = El_Messiri({ subsets: ["arabic", "latin"], weight: ["500", "600", "700"], variable: "--font-display" });
+const cormorant = Cormorant_Garamond({ subsets: ["latin"], weight: ["400", "500", "600", "700"], style: ["normal", "italic"], variable: "--font-playfair" });
 
 export const metadata: Metadata = {
   title: { default: "VESTRO — فيسترو | بدل رجالي للبيع والإيجار", template: "%s | VESTRO" },
@@ -17,7 +18,7 @@ export const viewport: Viewport = { colorScheme: "light dark" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ar" dir="rtl" suppressHydrationWarning className={`${cairo.variable} ${playfair.variable}`}>
+    <html lang="ar" dir="rtl" suppressHydrationWarning className={`${plex.variable} ${messiri.variable} ${cormorant.variable}`}>
       <body className="min-h-dvh">
         <Providers>{children}</Providers>
       </body>

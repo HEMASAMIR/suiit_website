@@ -16,7 +16,7 @@ const PERIODS = [
   { d: 0, l: "الكل" },
 ];
 const PIE: Record<OrderStatus, string> = {
-  pending: "#f59e0b", confirmed: "#0ea5e9", shipped: "#8b5cf6", delivered: "#10b981", cancelled: "#f43f5e", returned: "#71717a",
+  pending: "#b8935a", confirmed: "#c9a96e", shipped: "#8b5cf6", delivered: "#10b981", cancelled: "#f43f5e", returned: "#71717a",
 };
 const DEAD: OrderStatus[] = ["cancelled", "returned"];
 const cogs = (o: Order) => o.items.reduce((s, it) => s + it.cost * it.qty, 0);
@@ -78,8 +78,8 @@ export function Dashboard({ orders, expenses, lowStock, now }: { orders: Order[]
         </div>
       </PageHeader>
 
-      <div className="relative mb-6 overflow-hidden rounded-[2rem] bg-welcome p-6 text-white shadow-[0_30px_60px_-30px_rgba(14,44,78,.6)] sm:p-8">
-        <div className="bridal-orb pointer-events-none absolute -left-16 -top-16 size-64 rounded-full bg-[#5eead4]/30 blur-[80px]" />
+      <div className="relative mb-6 overflow-hidden rounded-xl bg-welcome p-6 text-white shadow-[0_30px_60px_-30px_rgba(14,44,78,.6)] sm:p-8">
+        <div className="bridal-orb pointer-events-none absolute -left-16 -top-16 size-64 rounded-full bg-[#e2c48f]/30 blur-[80px]" />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(110deg,transparent_35%,rgba(255,255,255,.14)_50%,transparent_65%)] bg-[length:250%_100%] animate-shimmer" />
         <p className="pointer-events-none absolute -bottom-6 left-4 select-none font-serif text-8xl text-white/10">VESTRO</p>
         <div className="relative grid gap-6 sm:grid-cols-3">
@@ -119,15 +119,15 @@ export function Dashboard({ orders, expenses, lowStock, now }: { orders: Order[]
             <ResponsiveContainer>
               <AreaChart data={m.chart} margin={{ left: 0, right: 8, top: 8 }}>
                 <defs>
-                  <linearGradient id="gS" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#0d9488" stopOpacity={0.35} /><stop offset="100%" stopColor="#0d9488" stopOpacity={0} /></linearGradient>
-                  <linearGradient id="gP" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#f59e0b" stopOpacity={0.3} /><stop offset="100%" stopColor="#f59e0b" stopOpacity={0} /></linearGradient>
+                  <linearGradient id="gS" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#9a7b4f" stopOpacity={0.35} /><stop offset="100%" stopColor="#9a7b4f" stopOpacity={0} /></linearGradient>
+                  <linearGradient id="gP" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#b8935a" stopOpacity={0.3} /><stop offset="100%" stopColor="#b8935a" stopOpacity={0} /></linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#64748b22" vertical={false} />
                 <XAxis dataKey="day" tick={{ fontSize: 11, fill: "#94a3b8" }} axisLine={false} tickLine={false} minTickGap={20} />
                 <YAxis tick={{ fontSize: 11, fill: "#94a3b8" }} axisLine={false} tickLine={false} width={50} />
                 <Tooltip contentStyle={{ borderRadius: 16, border: "1px solid #e2e8f0", fontFamily: "inherit", direction: "rtl" }} formatter={(v) => egp(Number(v))} />
-                <Area type="monotone" dataKey="المبيعات" stroke="#0d9488" strokeWidth={2.5} fill="url(#gS)" />
-                <Area type="monotone" dataKey="الربح" stroke="#f59e0b" strokeWidth={2.5} fill="url(#gP)" />
+                <Area type="monotone" dataKey="المبيعات" stroke="#9a7b4f" strokeWidth={2.5} fill="url(#gS)" />
+                <Area type="monotone" dataKey="الربح" stroke="#b8935a" strokeWidth={2.5} fill="url(#gP)" />
               </AreaChart>
             </ResponsiveContainer>
           </div>

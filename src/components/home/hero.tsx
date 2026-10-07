@@ -3,170 +3,162 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
-import { ArrowLeft, Sparkles, Truck } from "lucide-react";
-import { Tilt } from "../tilt";
+import { ArrowLeft, CalendarDays, Scissors, ShoppingBag, Sparkles } from "lucide-react";
+
+// Tape-measure ticks along the mirror frame (deterministic, no random during render).
+const TICKS = Array.from({ length: 41 }, (_, i) => i);
+
+const PATHS = [
+  { href: "/shop?category=buy", icon: ShoppingBag, t: "شراء", s: "بدل كلاسيك وسليم فيت", n: "01" },
+  { href: "/shop?category=rent", icon: CalendarDays, t: "إيجار", s: "سموكن العريس والمناسبات", n: "02" },
+  { href: "/shop?category=boxfit", icon: Sparkles, t: "بوكس فيت", s: "قَصّة 2026 الواسعة", n: "03" },
+];
 
 export function Hero({ title, subtitle, images }: { title: string; subtitle: string; images: string[] }) {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const yImg = useTransform(scrollYProgress, [0, 1], [0, 140]);
-  const yText = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const yImg = useTransform(scrollYProgress, [0, 1], [0, 90]);
   const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
   const [i, setI] = useState(0);
 
   useEffect(() => {
     if (images.length < 2) return;
-    const t = setInterval(() => setI((x) => (x + 1) % images.length), 4200);
+    const t = setInterval(() => setI((x) => (x + 1) % images.length), 4600);
     return () => clearInterval(t);
   }, [images.length]);
 
   const words = title.split(" ");
 
   return (
-    <section ref={ref} className="grain relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#effcfa] via-white to-[#fffaf0] dark:from-[#0a2636] dark:via-[#07182b] dark:to-[#0b1f33]" />
-      <div className="grid-lines absolute inset-0" />
-      <div className="pointer-events-none absolute -right-20 top-20 size-96 rounded-full bg-primary/20 blur-[100px]" />
-      <div className="pointer-events-none absolute -left-20 bottom-0 size-96 rounded-full bg-gold/20 blur-[110px]" />
+    <section ref={ref} className="relative overflow-hidden bg-[#16130f] text-[#f3ede3]">
+      {/* pinstripe cloth + champagne light */}
+      <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(212,180,131,.07)_0_1px,transparent_1px_26px)]" />
+      <div className="pointer-events-none absolute -left-40 top-0 size-[38rem] rounded-full bg-[#c9a96e]/15 blur-[140px]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0d0c0b] to-transparent" />
       <motion.p
-        style={{ y: yText }}
-        initial={{ opacity: 0, scale: 1.1 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.4 }}
-        className="pointer-events-none absolute inset-x-0 top-24 select-none text-center font-serif text-[22vw] leading-none tracking-[.1em] text-primary/[.07] dark:text-white/[.03]"
+        initial={{ opacity: 0, letterSpacing: "0.6em" }}
+        animate={{ opacity: 1, letterSpacing: "0.32em" }}
+        transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+        dir="ltr"
+        className="pointer-events-none absolute inset-x-0 bottom-6 select-none text-center font-serif text-[15vw] leading-none text-[#d4b483]/[.06]"
       >
         VESTRO
       </motion.p>
 
-      <div className="container-z relative grid min-h-[calc(100dvh-8.5rem)] items-center gap-10 py-12 lg:grid-cols-2">
-        <motion.div style={{ y: yText, opacity: fade }} className="relative z-10 text-center lg:text-right">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
+      <div className="container-z relative grid min-h-[calc(100dvh-8.5rem)] items-center gap-12 py-14 lg:grid-cols-[1.05fr_.95fr]">
+        <motion.div style={{ opacity: fade }} className="relative z-10 text-center lg:text-right">
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            className="chip mb-6 border border-primary/30 bg-surface/70 text-primary backdrop-blur"
+            className="inline-flex items-center gap-3 font-serif text-sm italic tracking-[.3em] text-[#d4b483]"
           >
-            <Sparkles className="size-3.5" /> كوليكشن ٢٠٢٦ الجديد
-          </motion.span>
-          <h1 className="text-5xl font-extrabold leading-[1.15] sm:text-6xl lg:text-7xl">
+            <span className="h-px w-10 bg-[#d4b483]/60" /> MAISON DU COSTUME <span className="h-px w-10 bg-[#d4b483]/60" />
+          </motion.p>
+
+          <h1 className="mt-6 text-5xl leading-[1.25] sm:text-6xl lg:text-[4.6rem]">
             {words.map((w, k) => (
               <motion.span
                 key={k}
-                initial={{ opacity: 0, y: 50, rotateX: -60 }}
-                animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{ delay: 0.2 + k * 0.12, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className={`inline-block ${k === words.length - 1 ? "text-gradient animate-shimmer" : ""}`}
+                initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ delay: 0.15 + k * 0.12, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                className={`inline-block ${k === words.length - 1 ? "text-gold-shimmer" : "text-[#f7f3ec]"}`}
               >
                 {w}&nbsp;
               </motion.span>
             ))}
           </h1>
+
+          <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 0.8, duration: 1 }} className="gold-rule mx-auto mt-6 w-48 origin-center lg:mr-0 lg:origin-right" />
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
-            className="mx-auto mt-6 max-w-lg text-lg leading-8 text-muted lg:mx-0"
+            transition={{ delay: 0.75 }}
+            className="mx-auto mt-6 max-w-lg text-lg leading-8 text-[#cfc6b8] lg:mx-0"
           >
             {subtitle}
           </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9 }}
-            className="mt-9 flex flex-wrap justify-center gap-3 lg:justify-start"
-          >
-            <Link href="/shop" className="btn-primary px-8 py-4 text-base">
-              تسوق الآن <ArrowLeft className="size-4" />
-            </Link>
-            <Link href="/shop?category=rent" className="btn-ghost px-8 py-4 text-base">بدل للإيجار</Link>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.1 }}
-            className="mt-10 flex justify-center gap-8 lg:justify-start"
-          >
-            {[
-              ["3", "أقسام: بيع • إيجار • بوكس فيت"],
-              ["27", "محافظة بنشحن لها"],
-              ["46–58", "مقاسات متاحة"],
-            ].map(([n, l]) => (
-              <div key={l}>
-                <p className="font-serif text-3xl font-bold text-ink">{n}</p>
-                <p className="text-xs text-muted">{l}</p>
-              </div>
+
+          {/* three ways to dress — the signature of this store */}
+          <div className="mt-10 grid gap-3 sm:grid-cols-3">
+            {PATHS.map((p, k) => (
+              <motion.div key={p.href} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 + k * 0.12 }}>
+                <Link
+                  href={p.href}
+                  className="group relative flex h-full flex-col items-start gap-2 overflow-hidden rounded-md border border-[#d4b483]/25 bg-white/[.03] p-4 text-right backdrop-blur transition duration-500 hover:-translate-y-1 hover:border-[#d4b483] hover:bg-[#d4b483]/10"
+                >
+                  <span className="absolute left-3 top-2 font-serif text-3xl italic text-[#d4b483]/20 transition group-hover:text-[#d4b483]/50">{p.n}</span>
+                  <p.icon className="size-5 text-[#d4b483]" />
+                  <span className="font-display text-lg font-bold text-[#f7f3ec]">{p.t}</span>
+                  <span className="text-xs leading-5 text-[#a39a8d]">{p.s}</span>
+                  <ArrowLeft className="mt-auto size-4 text-[#d4b483] transition group-hover:-translate-x-1" />
+                </Link>
+              </motion.div>
             ))}
-          </motion.div>
+          </div>
         </motion.div>
 
-        <motion.div style={{ y: yImg }} className="relative mx-auto aspect-[4/5] w-full max-w-md lg:max-w-lg">
+        {/* fitting-room mirror */}
+        <motion.div style={{ y: yImg }} className="relative mx-auto w-full max-w-md">
           <motion.div
-            initial={{ opacity: 0, rotate: 8, scale: 0.9 }}
-            animate={{ opacity: 1, rotate: 6, scale: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="absolute inset-0 translate-x-6 rounded-[3rem] bg-gradient-to-br from-primary to-[#0e2c4e]"
-          />
-          <Tilt className="absolute inset-0 rounded-[3rem]" max={5}>
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-0 overflow-hidden rounded-[3rem] border-4 border-surface shadow-2xl shadow-primary/30"
+            initial={{ opacity: 0, clipPath: "inset(100% 0 0 0)" }}
+            animate={{ opacity: 1, clipPath: "inset(0% 0 0 0)" }}
+            transition={{ duration: 1.3, delay: 0.25, ease: [0.76, 0, 0.24, 1] }}
+            className="relative aspect-[3/4] overflow-hidden rounded-t-[12rem] rounded-b-md border border-[#d4b483]/60 p-2"
           >
-            <AnimatePresence mode="popLayout">
-              <motion.img
-                key={images[i]}
-                src={images[i]}
-                alt="VESTRO"
-                initial={{ opacity: 0, scale: 1.15, rotateY: -18 }}
-                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                style={{ transformPerspective: 1200 }}
-                className="absolute inset-0 size-full object-cover"
-              />
-            </AnimatePresence>
-            <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-1.5">
-              {images.map((_, k) => (
-                <button key={k} onClick={() => setI(k)} aria-label={`صورة ${k + 1}`} className={`h-1.5 rounded-full bg-white transition-all ${k === i ? "w-6" : "w-1.5 opacity-60"}`} />
-              ))}
-            </div>
-          </motion.div>
-          </Tilt>
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1 }}
-            className="absolute -right-4 top-10 animate-float rounded-2xl border border-line bg-surface/90 p-3 shadow-xl backdrop-blur sm:-right-10"
-          >
-            <div className="flex items-center gap-2">
-              <span className="grid size-9 place-items-center rounded-full bg-primary-soft text-primary"><Truck className="size-4" /></span>
-              <div>
-                <p className="text-xs font-extrabold">شحن سريع</p>
-                <p className="text-[10px] text-muted">لكل المحافظات</p>
+            <div className="relative size-full overflow-hidden rounded-t-[11.4rem] rounded-b-sm">
+              <AnimatePresence mode="popLayout">
+                <motion.img
+                  key={images[i]}
+                  src={images[i]}
+                  alt="VESTRO"
+                  initial={{ opacity: 0, scale: 1.12 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute inset-0 size-full object-cover"
+                />
+              </AnimatePresence>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#16130f]/70 via-transparent to-transparent" />
+              {/* mirror sheen */}
+              <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,transparent_40%,rgba(255,255,255,.18)_50%,transparent_60%)] bg-[length:250%_100%] animate-shimmer" />
+              <div className="absolute inset-x-0 bottom-4 flex justify-center gap-2">
+                {images.map((_, k) => (
+                  <button key={k} onClick={() => setI(k)} aria-label={`صورة ${k + 1}`} className={`h-0.5 transition-all ${k === i ? "w-8 bg-[#d4b483]" : "w-4 bg-white/40"}`} />
+                ))}
               </div>
             </div>
           </motion.div>
+
+          {/* tape measure along the side */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.2 }}
-            style={{ animationDelay: "1.5s" }}
-            className="absolute -left-4 bottom-16 animate-float rounded-2xl border border-line bg-surface/90 p-3 shadow-xl backdrop-blur sm:-left-10"
+            transition={{ delay: 1.1, duration: 0.8 }}
+            dir="ltr"
+            className="absolute -right-7 top-14 bottom-6 hidden w-5 flex-col justify-between rounded-sm bg-[#e2c48f] py-1 shadow-lg sm:flex"
           >
-            <div className="flex items-center gap-1 text-gold">
-              <Sparkles className="size-4" />
-            </div>
-            <p className="mt-1 text-xs font-extrabold">بدل مكوية وجاهزة</p>
+            {TICKS.map((t) => (
+              <span key={t} className={`block h-px bg-[#16130f] ${t % 5 === 0 ? "w-3.5" : "w-2"}`} />
+            ))}
+          </motion.div>
+
+          {/* tailor's note */}
+          <motion.div
+            initial={{ opacity: 0, y: 20, rotate: -6 }}
+            animate={{ opacity: 1, y: 0, rotate: -4 }}
+            transition={{ delay: 1.3, type: "spring" }}
+            className="absolute -bottom-6 -left-4 flex items-center gap-3 rounded-sm bg-[#f7f3ec] px-4 py-3 text-[#16130f] shadow-2xl sm:-left-10"
+          >
+            <Scissors className="size-5 text-[#8a6a3f]" />
+            <span>
+              <span className="block font-display text-sm font-bold">بدل مكوية وجاهزة</span>
+              <span className="block text-[11px] text-[#6f665b]">مقاسات 46 — 58 • شحن لـ 27 محافظة</span>
+            </span>
           </motion.div>
         </motion.div>
       </div>
-
-      <motion.div style={{ opacity: fade }} className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs text-muted lg:flex">
-        <span>انزل تحت</span>
-        <span className="flex h-9 w-5 justify-center rounded-full border-2 border-muted/50 pt-1.5">
-          <motion.span animate={{ y: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 1.6 }} className="size-1.5 rounded-full bg-primary" />
-        </span>
-      </motion.div>
     </section>
   );
 }

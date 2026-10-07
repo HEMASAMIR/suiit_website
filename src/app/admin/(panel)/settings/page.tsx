@@ -116,7 +116,7 @@ export default function SettingsPage() {
             {SOCIALS.map((x) => {
               const v = s[x.key] ?? "";
               return (
-                <div key={x.key} className="group flex items-center gap-3 rounded-2xl border border-line bg-surface-2 p-2 pr-3 transition focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
+                <div key={x.key} className="group flex items-center gap-3 rounded-lg border border-line bg-surface-2 p-2 pr-3 transition focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
                   <span className="grid size-10 shrink-0 place-items-center rounded-xl text-white shadow-md transition group-focus-within:scale-110" style={{ background: x.color }}>
                     <svg viewBox="0 0 24 24" className={`size-[18px] fill-current ${x.key === "snapchat" ? "text-black" : ""}`}><path d={x.path} /></svg>
                   </span>

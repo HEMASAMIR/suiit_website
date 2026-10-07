@@ -11,14 +11,14 @@ import type { Order, PublicCustomer } from "@/lib/types";
 type Stat = { count: number; spent: number; last?: string };
 
 function tier(spent: number) {
-  if (spent >= 3000) return { label: "VIP", icon: Crown, cls: "bg-gradient-to-l from-[#f59e0b] to-[#fcd34d] text-[#0e2c4e]" };
-  if (spent >= 1000) return { label: "مميزة", icon: Gem, cls: "bg-gradient-to-l from-[#0f766e] to-[#14b8a6] text-white" };
+  if (spent >= 3000) return { label: "VIP", icon: Crown, cls: "bg-gradient-to-l from-[#b8935a] to-[#e2c48f] text-[#16130f]" };
+  if (spent >= 1000) return { label: "مميزة", icon: Gem, cls: "bg-gradient-to-l from-[#8a6a3f] to-[#c9a96e] text-white" };
   if (spent > 0) return { label: "اشترى", icon: ShoppingBag, cls: "bg-primary-soft text-primary" };
   return { label: "جديدة", icon: Sparkles, cls: "bg-surface-2 text-muted" };
 }
 
 const MEDALS = [
-  { ring: "from-[#fcd34d] to-[#f59e0b]", h: "sm:h-56", label: "🥇", order: "sm:order-2" },
+  { ring: "from-[#e2c48f] to-[#b8935a]", h: "sm:h-56", label: "🥇", order: "sm:order-2" },
   { ring: "from-[#e2e8f0] to-[#94a3b8]", h: "sm:h-48", label: "🥈", order: "sm:order-1" },
   { ring: "from-[#fdba74] to-[#c2410c]", h: "sm:h-44", label: "🥉", order: "sm:order-3" },
 ];
@@ -98,10 +98,10 @@ export default function CustomersPage() {
       ) : (
         <>
           {top.length > 0 && (
-            <section className="relative mb-6 overflow-hidden rounded-[2rem] bg-welcome p-6 text-white shadow-[0_30px_60px_-30px_rgba(14,44,78,.6)] sm:p-8">
+            <section className="relative mb-6 overflow-hidden rounded-xl bg-welcome p-6 text-white shadow-[0_30px_60px_-30px_rgba(14,44,78,.6)] sm:p-8">
               <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(110deg,transparent_35%,rgba(255,255,255,.12)_50%,transparent_65%)] bg-[length:250%_100%] animate-shimmer" />
               <div className="relative mb-6 flex items-center gap-2">
-                <Crown className="size-5 text-[#fbbf24]" />
+                <Crown className="size-5 text-[#d4b483]" />
                 <h2 className="text-lg font-extrabold">أفضل عملائك</h2>
                 <span className="text-xs text-white/60">— حسب إجمالي المشتريات</span>
               </div>
@@ -114,11 +114,11 @@ export default function CustomersPage() {
                       initial={{ opacity: 0, y: 40 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.15 * i, type: "spring", stiffness: 120 }}
-                      className={`${m.order} flex flex-col items-center justify-end rounded-[1.75rem] bg-white/[.08] p-5 text-center ring-1 ring-white/15 backdrop-blur ${m.h}`}
+                      className={`${m.order} flex flex-col items-center justify-end rounded-lg bg-white/[.08] p-5 text-center ring-1 ring-white/15 backdrop-blur ${m.h}`}
                     >
                       <span className="text-2xl">{m.label}</span>
                       <span className={`mt-2 grid size-16 shrink-0 place-items-center rounded-full bg-gradient-to-br ${m.ring} p-[3px]`}>
-                        <span className="grid size-full place-items-center rounded-full bg-[#0e2c4e] text-xl font-extrabold">{c.name[0]}</span>
+                        <span className="grid size-full place-items-center rounded-full bg-[#16130f] text-xl font-extrabold">{c.name[0]}</span>
                       </span>
                       <p className="mt-3 font-extrabold">{c.name}</p>
                       <p className="text-gold-shimmer text-lg font-extrabold">{egp(st(c.id).spent)}</p>
@@ -131,7 +131,7 @@ export default function CustomersPage() {
           )}
 
           <div className="mb-5 flex items-center gap-2 rounded-[1.5rem] border border-line bg-surface/80 p-2.5 backdrop-blur">
-            <div className="flex flex-1 items-center gap-2 rounded-2xl bg-surface-2 px-4">
+            <div className="flex flex-1 items-center gap-2 rounded-lg bg-surface-2 px-4">
               <Search className="size-4 text-primary" />
               <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="الاسم، الموبايل أو البريد" className="flex-1 bg-transparent py-2.5 text-sm outline-none" />
             </div>
@@ -151,11 +151,11 @@ export default function CustomersPage() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ delay: Math.min(i * 0.05, 0.5) }}
-                    className="glow-border group relative overflow-hidden rounded-[1.75rem] border border-line bg-surface p-5 shadow-[0_20px_50px_-35px_rgba(14,44,78,.5)] transition duration-500 hover:-translate-y-1.5"
+                    className="glow-border group relative overflow-hidden rounded-lg border border-line bg-surface p-5 shadow-[0_20px_50px_-35px_rgba(14,44,78,.5)] transition duration-500 hover:-translate-y-1.5"
                   >
                     <span className="pointer-events-none absolute -left-10 -top-10 size-32 rounded-full bg-primary/5 transition duration-500 group-hover:scale-150" />
                     <div className="relative flex items-center gap-3">
-                      <span className="grid size-14 place-items-center rounded-2xl bg-gradient-to-br from-primary to-[#0e2c4e] text-xl font-extrabold text-white shadow-lg shadow-primary/25 transition group-hover:-rotate-6">{c.name[0]}</span>
+                      <span className="grid size-14 place-items-center rounded-lg bg-gradient-to-br from-primary to-[#16130f] text-xl font-extrabold text-white shadow-lg shadow-primary/25 transition group-hover:-rotate-6">{c.name[0]}</span>
                       <div className="min-w-0 flex-1">
                         <p className="truncate font-extrabold">{c.name}</p>
                         <p dir="ltr" className="text-right text-xs text-muted">{c.phone}</p>
@@ -163,11 +163,11 @@ export default function CustomersPage() {
                       <span className={`chip gap-1 ${t.cls}`}><t.icon className="size-3.5" /> {t.label}</span>
                     </div>
                     <div className="relative mt-4 grid grid-cols-2 gap-2">
-                      <div className="rounded-2xl bg-surface-2 p-3">
+                      <div className="rounded-lg bg-surface-2 p-3">
                         <p className="text-[11px] text-muted">الطلبات</p>
                         <p className="text-lg font-extrabold">{s.count}</p>
                       </div>
-                      <div className="rounded-2xl bg-surface-2 p-3">
+                      <div className="rounded-lg bg-surface-2 p-3">
                         <p className="text-[11px] text-muted">إجمالي المشتريات</p>
                         <p className="text-lg font-extrabold text-primary">{egp(s.spent)}</p>
                       </div>

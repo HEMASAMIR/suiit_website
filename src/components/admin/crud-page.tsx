@@ -122,13 +122,13 @@ export function CrudPage<T extends { id: string }>({ collection, title, sub, sin
       {/* Toolbar */}
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="mb-6 flex flex-wrap items-center gap-3 rounded-[1.5rem] border border-line bg-surface/80 p-2.5 shadow-[0_15px_40px_-30px_rgba(14,44,78,.4)] backdrop-blur">
         {searchKeys.length > 0 && (
-          <div className="flex min-w-56 flex-1 items-center gap-2 rounded-2xl bg-surface-2 px-4 transition focus-within:ring-4 focus-within:ring-primary/10">
+          <div className="flex min-w-56 flex-1 items-center gap-2 rounded-lg bg-surface-2 px-4 transition focus-within:ring-4 focus-within:ring-primary/10">
             <Search className="size-4 text-primary" />
             <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={`ابحث في ${title}...`} className="flex-1 bg-transparent py-2.5 text-sm outline-none" />
           </div>
         )}
         {hasActive && (
-          <div className="flex rounded-2xl bg-surface-2 p-1">
+          <div className="flex rounded-lg bg-surface-2 p-1">
             {([["all", "الكل"], ["on", "ظاهر"], ["off", "مخفي"]] as const).map(([k, l]) => (
               <button key={k} onClick={() => setStatus(k)} className={`relative rounded-xl px-3.5 py-1.5 text-xs font-bold ${status === k ? "text-white" : "text-muted hover:text-primary"}`}>
                 {status === k && <motion.span layoutId={`st-${collection}`} className="absolute inset-0 rounded-xl bg-primary shadow-md shadow-primary/30" />}
@@ -138,7 +138,7 @@ export function CrudPage<T extends { id: string }>({ collection, title, sub, sin
           </div>
         )}
         {card && (
-          <div className="flex rounded-2xl bg-surface-2 p-1">
+          <div className="flex rounded-lg bg-surface-2 p-1">
             {([["grid", LayoutGrid, "كروت"], ["table", List, "جدول"]] as const).map(([k, I, l]) => (
               <button key={k} onClick={() => setView(k)} title={l} className={`relative grid size-9 place-items-center rounded-xl ${view === k ? "text-white" : "text-muted hover:text-primary"}`}>
                 {view === k && <motion.span layoutId={`vw-${collection}`} className="absolute inset-0 rounded-xl bg-primary shadow-md shadow-primary/30" />}
@@ -172,7 +172,7 @@ export function CrudPage<T extends { id: string }>({ collection, title, sub, sin
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.5, delay: Math.min(i * 0.06, 0.5), ease: [0.22, 1, 0.36, 1] }}
-                  className={`glow-border group relative overflow-hidden rounded-[1.75rem] border border-line bg-surface shadow-[0_20px_50px_-35px_rgba(14,44,78,.5)] transition duration-500 hover:-translate-y-1.5 hover:shadow-[0_30px_60px_-30px_rgba(13,148,136,.4)] ${off ? "opacity-70 grayscale-[.4]" : ""}`}
+                  className={`glow-border group relative overflow-hidden rounded-lg border border-line bg-surface shadow-[0_20px_50px_-35px_rgba(14,44,78,.5)] transition duration-500 hover:-translate-y-1.5 hover:shadow-[0_30px_60px_-30px_rgba(13,148,136,.4)] ${off ? "opacity-70 grayscale-[.4]" : ""}`}
                 >
                   <div className="relative h-44 overflow-hidden bg-surface-2">
                     {c.image ? (
@@ -181,7 +181,7 @@ export function CrudPage<T extends { id: string }>({ collection, title, sub, sin
                     ) : (
                       <div className="grid size-full place-items-center bg-gradient-to-br from-primary/20 to-gold/20 font-serif text-5xl text-primary/40">{c.title[0]}</div>
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b1f38]/90 via-[#0b1f38]/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0f0d0b]/90 via-[#0f0d0b]/20 to-transparent" />
                     <span className="absolute inset-0 bg-[linear-gradient(110deg,transparent_35%,rgba(255,255,255,.25)_50%,transparent_65%)] bg-[length:250%_100%] opacity-0 transition group-hover:animate-shimmer group-hover:opacity-100" />
                     <div className="absolute right-4 top-4 flex gap-2">{c.badge}</div>
                     <div className="absolute left-3 top-3 translate-y-[-8px] opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
@@ -210,7 +210,7 @@ export function CrudPage<T extends { id: string }>({ collection, title, sub, sin
           </AnimatePresence>
         </motion.div>
       ) : (
-        <div className="overflow-hidden rounded-[1.75rem] border border-line bg-surface shadow-[0_20px_50px_-35px_rgba(14,44,78,.5)]">
+        <div className="overflow-hidden rounded-lg border border-line bg-surface shadow-[0_20px_50px_-35px_rgba(14,44,78,.5)]">
           <div className="overflow-x-auto">
             <table className="w-full min-w-[680px] text-sm">
               <thead>

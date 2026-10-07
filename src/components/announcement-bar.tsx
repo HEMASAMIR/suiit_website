@@ -17,7 +17,7 @@ function Rich({ text }: { text: string }) {
     <>
       {text.split(/([A-Z][A-Z0-9]{3,})/g).map((part, i) =>
         /^[A-Z][A-Z0-9]{3,}$/.test(part) ? (
-          <span key={i} className="ticker-code mx-1 rounded-full px-2.5 py-0.5 font-sans text-[11px] font-extrabold tracking-wider text-[#0e2c4e]">
+          <span key={i} className="ticker-code mx-1 rounded-full px-2.5 py-0.5 font-sans text-[11px] font-extrabold tracking-wider text-[#16130f]">
             {part}
           </span>
         ) : (
@@ -42,13 +42,13 @@ export function AnnouncementBar({ text }: { text: string }) {
           <div key={i} dir="rtl" className="flex items-center">
             <span className="flex items-center gap-2.5 px-6">
               <span className="grid size-6 place-items-center rounded-full bg-white/15 ring-1 ring-white/20">
-                <Icon className="size-3.5 text-[#fbbf24]" />
+                <Icon className="size-3.5 text-[#d4b483]" />
               </span>
               <span className="whitespace-nowrap text-[13px] font-bold">
                 <Rich text={t} />
               </span>
             </span>
-            <span className="text-[10px] text-[#fbbf24]/80">✦</span>
+            <span className="text-[10px] text-[#d4b483]/80">✦</span>
           </div>
         );
       })}
