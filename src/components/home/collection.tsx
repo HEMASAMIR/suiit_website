@@ -40,7 +40,7 @@ export function CollectionRing({ products }: { products: PublicProduct[] }) {
   useAnimationFrame((_, delta) => {
     const d = drag.current;
     if (!d.active && !snapping.current) {
-      const idle = hovering.current ? 0 : -0.012; // deg per ms
+      const idle = hovering.current ? 0 : -0.007; // deg per ms
       d.v += (idle - d.v) * 0.04;
       rot.set(rot.get() + d.v * Math.min(delta, 40));
     }
@@ -86,7 +86,7 @@ export function CollectionRing({ products }: { products: PublicProduct[] }) {
     <div className="relative">
       <div
         className="relative mx-auto flex cursor-grab select-none items-center justify-center active:cursor-grabbing [touch-action:pan-y]"
-        style={{ height: card.h + 140, perspective: 1500 }}
+        style={{ height: card.h + 180, perspective: 1500 }}
         onPointerDown={(e) => {
           drag.current = { active: true, x: e.clientX, v: 0, moved: 0 };
         }}
@@ -134,35 +134,44 @@ export function CollectionRing({ products }: { products: PublicProduct[] }) {
       </div>
 
       {/* front piece details + controls */}
-      <div className="relative z-10 mt-2 flex flex-col items-center gap-5">
-        <div className="flex items-center gap-4">
-          <button onClick={() => go(-1)} aria-label="السابق" className="grid size-12 place-items-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white hover:text-[#16130f]">
+      <div className="relative z-10 mt-10 sm:mt-16 flex flex-col items-center gap-6 px-4">
+        <div className="flex items-center justify-center gap-4 sm:gap-6 w-full max-w-xl">
+          <button
+            onClick={() => go(-1)}
+            aria-label="السابق"
+            className="grid size-12 shrink-0 place-items-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white hover:text-[#16130f] active:scale-95"
+          >
             <ArrowRight className="size-5" />
           </button>
-          <div className="min-w-[230px] text-center">
+          <div className="min-w-[240px] sm:min-w-[320px] min-h-[96px] flex flex-col items-center justify-center text-center px-2">
             <AnimatePresence mode="wait">
               <motion.div
                 key={p.id}
-                initial={{ opacity: 0, y: 14, filter: "blur(6px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -14, filter: "blur(6px)" }}
-                transition={{ duration: 0.35 }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.22, ease: "easeOut" }}
+                className="flex flex-col items-center"
               >
                 <p className="font-serif text-xs italic tracking-[.3em] text-[#e2c48f]">#{p.model}</p>
-                <p className="mt-1 text-xl font-extrabold text-white sm:text-2xl">{p.name}</p>
-                <p className="mt-1 text-lg font-extrabold text-[#d4b483]">{egp(p.price)}</p>
+                <h3 className="mt-1 text-xl sm:text-2xl font-black text-white drop-shadow-md">{p.name}</h3>
+                <p className="mt-1 text-lg sm:text-xl font-extrabold text-[#d4b483]">{egp(p.price)}</p>
               </motion.div>
             </AnimatePresence>
           </div>
-          <button onClick={() => go(1)} aria-label="التالي" className="grid size-12 place-items-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white hover:text-[#16130f]">
+          <button
+            onClick={() => go(1)}
+            aria-label="التالي"
+            className="grid size-12 shrink-0 place-items-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white hover:text-[#16130f] active:scale-95"
+          >
             <ArrowLeft className="size-5" />
           </button>
         </div>
-        <Link href={`/product/${p.slug}`} className="btn-primary px-8 py-3.5">
+        <Link href={`/product/${p.slug}`} className="btn-primary px-9 py-3.5 text-base shadow-xl hover:scale-105 transition-all">
           شوف القطعة <ArrowLeft className="size-4" />
         </Link>
-        <p className="flex items-center gap-2 text-xs text-white/50">
-          <Hand className="size-4 animate-float" /> اسحب يمين وشمال عشان تقلّب في الكوليكشن
+        <p className="flex items-center gap-2 text-xs sm:text-sm text-white/60 pb-2">
+          <Hand className="size-4 animate-float text-[#d4b483]" /> اسحب يمين وشمال عشان تقلّب في الكوليكشن
         </p>
       </div>
     </div>
